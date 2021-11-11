@@ -15,15 +15,14 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://cphpi.github.io/images/how-to-set-up-ftp-server-on-your-raspberry-pi.png">
 <meta property="og:image" content="https://cphpi.github.io/images/edit-the-vsftpd-configuration-file.png">
-<meta property="og:image" content="https://cphpi.github.io/images/edit-the-vsftpd-configuration-file.png">
-<meta property="og:image" content="https://cphpi.github.io/images/edit-the-vsftpd-configuration-file.png">
 <meta property="og:image" content="https://cphpi.github.io/images/make-a-directory-on-the-ftp-server.png">
 <meta property="og:image" content="https://cphpi.github.io/images/remove-write-permissions-from-ftp-users.png">
 <meta property="og:image" content="https://cphpi.github.io/images/obtain-ip-address-using-ifconfig.png">
 <meta property="og:image" content="https://cphpi.github.io/images/connect-to-ftp-server-using-filezilla-e1617614481523.png">
 <meta property="og:image" content="https://cphpi.github.io/images/establish-connection-to-ftp-server-using-filezilla-e1617614422961.png">
+<meta property="og:image" content="https://cphpi.github.io/images/transfer-file-to-ftp-server-using-filezilla-e1617614378774.png">
 <meta property="article:published_time" content="2021-11-11T17:27:00.000Z">
-<meta property="article:modified_time" content="2021-11-11T18:02:54.799Z">
+<meta property="article:modified_time" content="2021-11-11T18:16:56.782Z">
 <meta property="article:author" content="PAKHO">
 <meta property="article:tag" content="Raspberry">
 <meta property="article:tag" content="FTP">
@@ -117,7 +116,7 @@
 
     </div>
     <div id="toc">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Introduction"><span class="toc-number">1.</span> <span class="toc-text">Introduction</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Prerequisites"><span class="toc-number">2.</span> <span class="toc-text">Prerequisites</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Raspberry-Pi-FTP-Server-Setup-Guide"><span class="toc-number">3.</span> <span class="toc-text">Raspberry Pi FTP Server Setup Guide</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Step-1-Update-System-Packages"><span class="toc-number">3.1.</span> <span class="toc-text">Step 1: Update System Packages</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Step-2-Install-FTP-Server"><span class="toc-number">3.2.</span> <span class="toc-text">Step 2: Install FTP Server</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Step-3-Edit-Configuration-File"><span class="toc-number">3.3.</span> <span class="toc-text">Step 3: Edit Configuration File</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Step-2-Install-FTP-Server-2"><span class="toc-number">3.4.</span> <span class="toc-text">Step 2: Install FTP Server</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Step-3-Edit-Configuration-File-2"><span class="toc-number">3.5.</span> <span class="toc-text">Step 3: Edit Configuration File</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Step-4-Create-FTP-Directory"><span class="toc-number">3.6.</span> <span class="toc-text">Step 4: Create FTP Directory</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Introduction-2"><span class="toc-number">4.</span> <span class="toc-text">Introduction</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Prerequisites-2"><span class="toc-number">5.</span> <span class="toc-text">Prerequisites</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Raspberry-Pi-FTP-Server-Setup-Guide-2"><span class="toc-number">6.</span> <span class="toc-text">Raspberry Pi FTP Server Setup Guide</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Step-1-Update-System-Packages-2"><span class="toc-number">6.1.</span> <span class="toc-text">Step 1: Update System Packages</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Step-2-Install-FTP-Server-3"><span class="toc-number">6.2.</span> <span class="toc-text">Step 2: Install FTP Server</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Step-3-Edit-Configuration-File-3"><span class="toc-number">6.3.</span> <span class="toc-text">Step 3: Edit Configuration File</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Step-4-Create-FTP-Directory-2"><span class="toc-number">6.4.</span> <span class="toc-text">Step 4: Create FTP Directory</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Step-5-Modify-Permissions"><span class="toc-number">6.5.</span> <span class="toc-text">Step 5: Modify Permissions</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Step-6-Restart-Vsftpd-Daemon"><span class="toc-number">6.6.</span> <span class="toc-text">Step 6: Restart Vsftpd Daemon</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#FTP-Server-Test"><span class="toc-number">7.</span> <span class="toc-text">FTP Server Test</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Conclusion"><span class="toc-number">7.1.</span> <span class="toc-text">Conclusion</span></a></li></ol></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Introduction"><span class="toc-number">1.</span> <span class="toc-text">Introduction</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Prerequisites"><span class="toc-number">2.</span> <span class="toc-text">Prerequisites</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Raspberry-Pi-FTP-Server-Setup-Guide"><span class="toc-number">3.</span> <span class="toc-text">Raspberry Pi FTP Server Setup Guide</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Step-1-Update-System-Packages"><span class="toc-number">3.1.</span> <span class="toc-text">Step 1: Update System Packages</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Step-2-Install-FTP-Server"><span class="toc-number">3.2.</span> <span class="toc-text">Step 2: Install FTP Server</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Step-3-Edit-Configuration-File"><span class="toc-number">3.3.</span> <span class="toc-text">Step 3: Edit Configuration File</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Step-4-Create-FTP-Directory"><span class="toc-number">3.4.</span> <span class="toc-text">Step 4: Create FTP Directory</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Step-5-Modify-Permissions"><span class="toc-number">3.5.</span> <span class="toc-text">Step 5: Modify Permissions</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Step-6-Restart-Vsftpd-Daemon"><span class="toc-number">3.6.</span> <span class="toc-text">Step 6: Restart Vsftpd Daemon</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#FTP-Server-Test"><span class="toc-number">4.</span> <span class="toc-text">FTP Server Test</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Conclusion"><span class="toc-number">4.1.</span> <span class="toc-text">Conclusion</span></a></li></ol></li></ol>
     </div>
   </span>
 </div>
@@ -205,29 +204,6 @@
 <ol start="3">
 <li>Find the following line:</li>
 </ol>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">## Introduction</span><br><span class="line"></span><br><span class="line">FTP (**F**ile **T**ransfer **P**rotocol) is a network protocol used to transfer files between two machines. Setting up an FTP server on Raspberry Pi is simple but make sure you do not transfer sensitive data as this protocol does not use encryption.</span><br><span class="line"></span><br><span class="line">**In this tutorial, you will learn to set up an FTP server on your Raspberry Pi.**</span><br><span class="line"></span><br><span class="line">## Prerequisites</span><br><span class="line">* list itemRaspberry Pi OS installed on your device</span><br><span class="line">* Memory card</span><br><span class="line">* Network connection</span><br><span class="line">* Account with root privileges</span><br><span class="line"></span><br><span class="line">## Raspberry Pi FTP Server Setup Guide</span><br><span class="line">Setting up the FTP server requires:</span><br><span class="line">1. A server utility.</span><br><span class="line">2. Changes in some configuration files.</span><br><span class="line">3. Setting up the server directory.</span><br><span class="line">4. Modifying permissions for the server user.</span><br><span class="line"></span><br><span class="line">Follow these steps to set up an FTP server on your Raspberry Pi:</span><br><span class="line"></span><br><span class="line">### Step 1: Update System Packages</span><br><span class="line">Before installing the FTP utility, update the system package repositories and run an upgrade:</span><br></pre></td></tr></table></figure>
-<p>sudo apt update</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">```</span><br><span class="line">sudo apt full-upgrade</span><br></pre></td></tr></table></figure>
-<p>Confirm with Y and wait for the upgrade to complete.</p>
-<h3 id="Step-2-Install-FTP-Server-2">Step 2: Install FTP Server</h3>
-<p>There are several utilities available for setting up an FTP server on Raspberry Pi. In this tutorial, we will use the open-source <strong>vsftpd</strong> utility.</p>
-<p>The vsftpd utility is lightweight, secure, and easy to use.</p>
-<p>Install <strong>vsftpd</strong> on the Raspberry Pi by running:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install vsftpd</span><br></pre></td></tr></table></figure>
-<h3 id="Step-3-Edit-Configuration-File-2">Step 3: Edit Configuration File</h3>
-<p>Before connecting to the FTP server, modify the settings in the <strong>vsftpd configuration file</strong> using a text editor, for example, nano.</p>
-<ol>
-<li>Run the following command:</li>
-</ol>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo nano /etc/vsftpd.conf</span><br></pre></td></tr></table></figure>
-<p><img src="/images/edit-the-vsftpd-configuration-file.png" alt="edit-the-vsftpd-configuration-file.png"><br>
-2. Find (<strong>CTRL + W</strong>) and uncomment the following lines by removing the hash (#) sign:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">write_enable=YES</span><br></pre></td></tr></table></figure>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">local_umask=022</span><br></pre></td></tr></table></figure>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chroot_local_user=YES</span><br></pre></td></tr></table></figure>
-<ol start="3">
-<li>Find the following line:</li>
-</ol>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">anonymous_enable=YES</span><br></pre></td></tr></table></figure>
 <p>Change it to:</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">anonymous_enable=NO</span><br></pre></td></tr></table></figure>
@@ -241,67 +217,6 @@
 <li>Press <strong>CTRL + X</strong> and confirm with <strong>Y</strong> to save the settings and exit.</li>
 </ol>
 <h3 id="Step-4-Create-FTP-Directory">Step 4: Create FTP Directory</h3>
-<p>Create an FTP directory to use for transferring files. A subdirectory is needed since the root directory cannot have write permissions.</p>
-<p>Use the following syntax:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p /home/[user]/FTP/[subdirectory_name]</span><br></pre></td></tr></table></figure>
-<p>Replace <strong>[user]</strong> with the relevant user. Replace <strong>[subdirectory_name]</strong> with a name of your choice. The default user on Raspberry Pi OS is ‘pi.’</p>
-<p>For example:</p>
-<h2 id="Introduction-2">Introduction</h2>
-<p>FTP (<strong>F</strong>ile <strong>T</strong>ransfer <strong>P</strong>rotocol) is a network protocol used to transfer files between two machines. Setting up an FTP server on Raspberry Pi is simple but make sure you do not transfer sensitive data as this protocol does not use encryption.</p>
-<p><strong>In this tutorial, you will learn to set up an FTP server on your Raspberry Pi.</strong></p>
-<h2 id="Prerequisites-2">Prerequisites</h2>
-<ul>
-<li>list itemRaspberry Pi OS installed on your device</li>
-<li>Memory card</li>
-<li>Network connection</li>
-<li>Account with root privileges</li>
-</ul>
-<h2 id="Raspberry-Pi-FTP-Server-Setup-Guide-2">Raspberry Pi FTP Server Setup Guide</h2>
-<p>Setting up the FTP server requires:</p>
-<ol>
-<li>A server utility.</li>
-<li>Changes in some configuration files.</li>
-<li>Setting up the server directory.</li>
-<li>Modifying permissions for the server user.</li>
-</ol>
-<p>Follow these steps to set up an FTP server on your Raspberry Pi:</p>
-<h3 id="Step-1-Update-System-Packages-2">Step 1: Update System Packages</h3>
-<p>Before installing the FTP utility, update the system package repositories and run an upgrade:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt update</span><br></pre></td></tr></table></figure>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt full-upgrade</span><br></pre></td></tr></table></figure>
-<p>Confirm with Y and wait for the upgrade to complete.</p>
-<h3 id="Step-2-Install-FTP-Server-3">Step 2: Install FTP Server</h3>
-<p>There are several utilities available for setting up an FTP server on Raspberry Pi. In this tutorial, we will use the open-source <strong>vsftpd</strong> utility.</p>
-<p>The vsftpd utility is lightweight, secure, and easy to use.</p>
-<p>Install <strong>vsftpd</strong> on the Raspberry Pi by running:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install vsftpd</span><br></pre></td></tr></table></figure>
-<h3 id="Step-3-Edit-Configuration-File-3">Step 3: Edit Configuration File</h3>
-<p>Before connecting to the FTP server, modify the settings in the <strong>vsftpd configuration file</strong> using a text editor, for example, nano.</p>
-<ol>
-<li>Run the following command:</li>
-</ol>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo nano /etc/vsftpd.conf</span><br></pre></td></tr></table></figure>
-<p><img src="/images/edit-the-vsftpd-configuration-file.png" alt="edit-the-vsftpd-configuration-file.png"><br>
-2. Find (<strong>CTRL + W</strong>) and uncomment the following lines by removing the hash (#) sign:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">write_enable=YES</span><br></pre></td></tr></table></figure>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">local_umask=022</span><br></pre></td></tr></table></figure>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chroot_local_user=YES</span><br></pre></td></tr></table></figure>
-<ol start="3">
-<li>Find the following line:</li>
-</ol>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">anonymous_enable=YES</span><br></pre></td></tr></table></figure>
-<p>Change it to:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">anonymous_enable=NO</span><br></pre></td></tr></table></figure>
-<ol start="4">
-<li>Add the following lines at the end of the config file:</li>
-</ol>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">user_sub_token=$USER</span><br></pre></td></tr></table></figure>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">local_root=/home/$USER/FTP</span><br></pre></td></tr></table></figure>
-<p>These settings lock the server users to the FTP folder within the home directory.</p>
-<ol start="5">
-<li>Press <strong>CTRL + X</strong> and confirm with <strong>Y</strong> to save the settings and exit.</li>
-</ol>
-<h3 id="Step-4-Create-FTP-Directory-2">Step 4: Create FTP Directory</h3>
 <p>Create an FTP directory to use for transferring files. A subdirectory is needed since the root directory cannot have write permissions.</p>
 <p>Use the following syntax:</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p /home/[user]/FTP/[subdirectory_name]</span><br></pre></td></tr></table></figure>
@@ -342,8 +257,9 @@ In this case, we used the private IP address to connect locally.</p>
 <img src="/images/connect-to-ftp-server-using-filezilla-e1617614481523.png" alt="connect-to-ftp-server-using-filezilla-e1617614481523.png"><br>
 If the connection is successful, a message stating Connection established appears in the log.<br>
 <img src="/images/establish-connection-to-ftp-server-using-filezilla-e1617614422961.png" alt="establish-connection-to-ftp-server-using-filezilla-e1617614422961.png"><br>
-4. On the remote machine, drag and drop some files from a source to the destination directory in FileZilla to make sure the connection is working.</p>
-<p>If everything works, FileZilla states that the file transfer was successful. Our example is for a local transfer, but the procedure is the same in other cases.</p>
+4. On the remote machine, drag and drop some files from a source to the destination directory in FileZilla to make sure the connection is working.<br>
+<img src="/images/transfer-file-to-ftp-server-using-filezilla-e1617614378774.png" alt="transfer-file-to-ftp-server-using-filezilla-e1617614378774.png"><br>
+If everything works, FileZilla states that the file transfer was successful. Our example is for a local transfer, but the procedure is the same in other cases.</p>
 <h3 id="Conclusion">Conclusion</h3>
 <p>Now you know how to set up an FTP server on your Raspberry Pi. The solution is simple and works well when transferring files between two computers. You can use this setup as private cloud storage and keep the costs low.</p>
 
@@ -403,7 +319,7 @@ If the connection is successful, a message stating Connection established appear
     </div>
 
     <div id="toc-footer" style="display: none">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Introduction"><span class="toc-number">1.</span> <span class="toc-text">Introduction</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Prerequisites"><span class="toc-number">2.</span> <span class="toc-text">Prerequisites</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Raspberry-Pi-FTP-Server-Setup-Guide"><span class="toc-number">3.</span> <span class="toc-text">Raspberry Pi FTP Server Setup Guide</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Step-1-Update-System-Packages"><span class="toc-number">3.1.</span> <span class="toc-text">Step 1: Update System Packages</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Step-2-Install-FTP-Server"><span class="toc-number">3.2.</span> <span class="toc-text">Step 2: Install FTP Server</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Step-3-Edit-Configuration-File"><span class="toc-number">3.3.</span> <span class="toc-text">Step 3: Edit Configuration File</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Step-2-Install-FTP-Server-2"><span class="toc-number">3.4.</span> <span class="toc-text">Step 2: Install FTP Server</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Step-3-Edit-Configuration-File-2"><span class="toc-number">3.5.</span> <span class="toc-text">Step 3: Edit Configuration File</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Step-4-Create-FTP-Directory"><span class="toc-number">3.6.</span> <span class="toc-text">Step 4: Create FTP Directory</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Introduction-2"><span class="toc-number">4.</span> <span class="toc-text">Introduction</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Prerequisites-2"><span class="toc-number">5.</span> <span class="toc-text">Prerequisites</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Raspberry-Pi-FTP-Server-Setup-Guide-2"><span class="toc-number">6.</span> <span class="toc-text">Raspberry Pi FTP Server Setup Guide</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Step-1-Update-System-Packages-2"><span class="toc-number">6.1.</span> <span class="toc-text">Step 1: Update System Packages</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Step-2-Install-FTP-Server-3"><span class="toc-number">6.2.</span> <span class="toc-text">Step 2: Install FTP Server</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Step-3-Edit-Configuration-File-3"><span class="toc-number">6.3.</span> <span class="toc-text">Step 3: Edit Configuration File</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Step-4-Create-FTP-Directory-2"><span class="toc-number">6.4.</span> <span class="toc-text">Step 4: Create FTP Directory</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Step-5-Modify-Permissions"><span class="toc-number">6.5.</span> <span class="toc-text">Step 5: Modify Permissions</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Step-6-Restart-Vsftpd-Daemon"><span class="toc-number">6.6.</span> <span class="toc-text">Step 6: Restart Vsftpd Daemon</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#FTP-Server-Test"><span class="toc-number">7.</span> <span class="toc-text">FTP Server Test</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Conclusion"><span class="toc-number">7.1.</span> <span class="toc-text">Conclusion</span></a></li></ol></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Introduction"><span class="toc-number">1.</span> <span class="toc-text">Introduction</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Prerequisites"><span class="toc-number">2.</span> <span class="toc-text">Prerequisites</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Raspberry-Pi-FTP-Server-Setup-Guide"><span class="toc-number">3.</span> <span class="toc-text">Raspberry Pi FTP Server Setup Guide</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Step-1-Update-System-Packages"><span class="toc-number">3.1.</span> <span class="toc-text">Step 1: Update System Packages</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Step-2-Install-FTP-Server"><span class="toc-number">3.2.</span> <span class="toc-text">Step 2: Install FTP Server</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Step-3-Edit-Configuration-File"><span class="toc-number">3.3.</span> <span class="toc-text">Step 3: Edit Configuration File</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Step-4-Create-FTP-Directory"><span class="toc-number">3.4.</span> <span class="toc-text">Step 4: Create FTP Directory</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Step-5-Modify-Permissions"><span class="toc-number">3.5.</span> <span class="toc-text">Step 5: Modify Permissions</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Step-6-Restart-Vsftpd-Daemon"><span class="toc-number">3.6.</span> <span class="toc-text">Step 6: Restart Vsftpd Daemon</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#FTP-Server-Test"><span class="toc-number">4.</span> <span class="toc-text">FTP Server Test</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Conclusion"><span class="toc-number">4.1.</span> <span class="toc-text">Conclusion</span></a></li></ol></li></ol>
     </div>
 
     <div id="share-footer" style="display: none">
