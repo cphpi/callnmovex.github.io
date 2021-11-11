@@ -2,6 +2,25 @@
 <search> 
   
   
+    
+    <entry>
+      <title>Install PHP 8.0 on Raspberry Pi</title>
+      <link href="/2021/11/08/Install-PHP-8-0-on-Raspberry-Pi/"/>
+      <url>/2021/11/08/Install-PHP-8-0-on-Raspberry-Pi/</url>
+      
+        <content type="html"><![CDATA[<p>|-<img src="/assets/uploads/files/1636197581576-install_php_8_0_on_raspberry_pi_featured_image.png" alt="install_php_8_0_on_raspberry_pi_featured_image.png">-|</p><p><strong>PHP</strong> is a programming language that commonly used to create a web applications and dynamic websites. With each release of PHP, new features and various changes are introduced.</p><p>This tutorial shows how to install PHP 8.0 on Raspberry Pi.</p><p>Connect to Raspberry Pi via SSH and execute commands to download GPG key and add repository.</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo wget -O /etc/apt/trusted.gpg.d/php.gpg https://packages.sury.org/php/apt.gpg</span><br></pre></td></tr></table></figure><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo &quot;deb https://packages.sury.org/php/ $(lsb_release -sc) main&quot; | sudo tee /etc/apt/sources.list.d/php.list</span><br></pre></td></tr></table></figure><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt update</span><br></pre></td></tr></table></figure><p>Then install PHP 8.0 with command line interface (CLI):</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install -y php8.0-common php8.0-cli</span><br></pre></td></tr></table></figure><p>Check PHP version when installation was finished:</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php --version</span><br></pre></td></tr></table></figure><p>There are various PHP extensions that provides additional functionality. PHP extensions can be installed using the following syntax:</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install -y php8.0-extension_name</span><br></pre></td></tr></table></figure><p>Execute the following command to install commonly used PHP extensions:</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install -y php8.0-curl php8.0-gd php8.0-mbstring php8.0-xml php8.0-zip</span><br></pre></td></tr></table></figure><p>We can use -m option to check what extensions are installed.</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php -m</span><br></pre></td></tr></table></figure><p>If we want completely remove any package with a name that starts with php and anything related to it we can execute this command:</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt purge -y php.*</span><br></pre></td></tr></table></figure><h3 id="PHP-integration-with-MySQL-or-MariaDB">PHP integration with MySQL or MariaDB</h3><p>In order to use PHP with MySQL or MariaDB database we need to install the following extension:</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install -y php8.0-mysql</span><br></pre></td></tr></table></figure><h3 id="PHP-integration-with-Apache">PHP integration with Apache</h3><p>If we want to integrate PHP with Apache HTTP server then install the following extension:</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install -y libapache2-mod-php8.0</span><br></pre></td></tr></table></figure><p>Once installation was completed restart Apache.</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo service apache2 restart</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> Raspberry </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
   
   
 </search>
