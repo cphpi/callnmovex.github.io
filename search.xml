@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>How to change Raspberry Pi&#39;s Swapfile Size on Raspbian</title>
+      <link href="/2021/11/11/How-to-change-Raspberry-Pi-s-Swapfile-Size-on-Raspbian/"/>
+      <url>/2021/11/11/How-to-change-Raspberry-Pi-s-Swapfile-Size-on-Raspbian/</url>
+      
+        <content type="html"><![CDATA[<h2 id="Reason-Why">Reason Why</h2><p>Ever get the dreaded error:</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Virtual memory exhausted: Cannot allocate memory</span><br></pre></td></tr></table></figure><p>With the first iterations of Raspberry Pi the Model A comes with 256mb of memory. While the Raspberry Pi B comes with a modest 512mb of memory. For most applications this amount of memory is actually quiet a bit. As soon as you start compiling your own binaries this amount starts to seem dismal.</p><p>*Insert reason why swap on flash-based memory is bad here.</p><h2 id="Limitations">Limitations</h2><p>The Raspbian distribution comes with a 100mb swapfile. This is actually a bit on the small side. A general rule of thumb is swapfile size should be about twice as much as the available RAM on the machine. In the examples below I have a Raspberry Pi B+. So the amount of swap I use is 1024mb.</p><h2 id="Commands">Commands</h2><p>We will change the configuration in the file */etc/dphys-swapfile *:</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo nano /etc/dphys-swapfile</span><br></pre></td></tr></table></figure><p>The default value in Raspbian is:</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CONF_SWAPSIZE=100</span><br></pre></td></tr></table></figure><p>We will need to change this to:</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CONF_SWAPSIZE=1024</span><br></pre></td></tr></table></figure><p>Then you will need to stop and start the service that manages the swapfile own Rasbian:</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo /etc/init.d/dphys-swapfile stop</span><br></pre></td></tr></table></figure><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo /etc/init.d/dphys-swapfile start</span><br></pre></td></tr></table></figure><p>You can then verify the amount of memory + swap by issuing the following command:</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">free -m</span><br></pre></td></tr></table></figure><p>The output should look like:</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">total     used     free   shared  buffers   cached</span><br><span class="line">Mem:           435       56      379        0        3       16</span><br><span class="line">-/+ buffers/cache:       35      399</span><br><span class="line">Swap:         1023        0     1023</span><br></pre></td></tr></table></figure><h2 id="Finished">Finished!</h2><p>That should be enough swap to complete any future compiles I may do in the future.</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Raspberry </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Raspberry </tag>
+            
+            <tag> Swapfile </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Install PHP 8.0 on Raspberry Pi</title>
       <link href="/2021/11/08/Install-PHP-8-0-on-Raspberry-Pi/"/>
       <url>/2021/11/08/Install-PHP-8-0-on-Raspberry-Pi/</url>
@@ -15,6 +42,8 @@
         <tags>
             
             <tag> Raspberry </tag>
+            
+            <tag> PHP </tag>
             
         </tags>
       
