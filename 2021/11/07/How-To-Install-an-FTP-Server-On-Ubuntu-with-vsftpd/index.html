@@ -14,14 +14,14 @@
 <meta property="og:description" content="Introduction If you are looking to install an FTP server on Ubuntu, you can’t beat the simplicity of vsftpd . FTP stands for File Transfer Protocol. It is similar to HTTP (HyperText Transfer Protocol)">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://cphpi.github.io/images/how-to-install-ftp-server-on-ubuntu-using-vsftpd.png">
-<meta property="og:image" content="https://cphpi.github.io/assets/uploads/files/1636215849751-sudo-apt-get-update-ubuntu-vsftpd.png">
-<meta property="og:image" content="https://cphpi.github.io/assets/uploads/files/1636215894864-install-vsftpd-ubuntu-ftp.png">
-<meta property="og:image" content="https://cphpi.github.io/assets/uploads/files/1636215980766-configure-firewall-to-allow-ftp-traffic.png">
-<meta property="og:image" content="https://cphpi.github.io/assets/uploads/files/1636216221569-write-enable-yes-vsftpd-conf.png">
-<meta property="og:image" content="https://cphpi.github.io/assets/uploads/files/1636216302377-chroot-local-user-yes-vsftpd-conf.png">
-<meta property="og:image" content="https://cphpi.github.io/assets/uploads/files/1636216446038-chroot-list-file-vsftpd.png">
+<meta property="og:image" content="https://cphpi.github.io/images/sudo-apt-get-update-ubuntu-vsftpd.png">
+<meta property="og:image" content="https://cphpi.github.io/images/install-vsftpd-ubuntu-ftp.png">
+<meta property="og:image" content="https://cphpi.github.io/images/configure-firewall-to-allow-ftp-traffic.png">
+<meta property="og:image" content="https://cphpi.github.io/images/write-enable-yes-vsftpd-conf.png">
+<meta property="og:image" content="https://cphpi.github.io/images/chroot-local-user-yes-vsftpd-conf.png">
+<meta property="og:image" content="https://cphpi.github.io/images/chroot-list-file-vsftpd.png">
 <meta property="article:published_time" content="2021-11-07T10:08:00.000Z">
-<meta property="article:modified_time" content="2021-11-11T10:43:16.665Z">
+<meta property="article:modified_time" content="2021-11-11T17:04:51.862Z">
 <meta property="article:author" content="PAKHO">
 <meta property="article:tag" content="Ubuntu">
 <meta name="twitter:card" content="summary">
@@ -173,7 +173,7 @@
 <p>Start by updating your repositories – enter the following in a terminal window:</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt update</span><br></pre></td></tr></table></figure>
 <p>The system proceeds to update the repositories.<br>
-<img src="/assets/uploads/files/1636215849751-sudo-apt-get-update-ubuntu-vsftpd.png" alt="sudo-apt-get-update-ubuntu-vsftpd.png"></p>
+<img src="/images/sudo-apt-get-update-ubuntu-vsftpd.png" alt="sudo-apt-get-update-ubuntu-vsftpd.png"></p>
 <h3 id="Step-2-Install-vsftpd-Server-on-Ubuntu">Step 2: Install vsftpd Server on Ubuntu</h3>
 <p>A common open-source FTP utility used in Ubuntu is vsftpd. It is recommended for its ease of use.</p>
 <ol>
@@ -181,7 +181,7 @@
 </ol>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install vsftpd</span><br></pre></td></tr></table></figure>
 <p>This is an example of the output in Ubuntu.</p>
-<p><img src="/assets/uploads/files/1636215894864-install-vsftpd-ubuntu-ftp.png" alt="install-vsftpd-ubuntu-ftp.png"></p>
+<p><img src="/images/install-vsftpd-ubuntu-ftp.png" alt="install-vsftpd-ubuntu-ftp.png"></p>
 <ol start="2">
 <li>To launch the service and enable it at startup, run the commands:</li>
 </ol>
@@ -197,7 +197,7 @@
 <p>Create a new FTP user with the following commands:</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo useradd -m testuser</span><br></pre></td></tr></table></figure>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ufw allow 21/tcp</span><br></pre></td></tr></table></figure>
-<p><img src="/assets/uploads/files/1636215980766-configure-firewall-to-allow-ftp-traffic.png" alt="configure-firewall-to-allow-ftp-traffic.png"></p>
+<p><img src="/images/configure-firewall-to-allow-ftp-traffic.png" alt="configure-firewall-to-allow-ftp-traffic.png"></p>
 <h3 id="Step-6-Connect-to-Ubuntu-FTP-Server">Step 6: Connect to Ubuntu FTP Server</h3>
 <p>Connect to the FTP server with the following command:</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ftp ubuntu-ftp</span><br></pre></td></tr></table></figure>
@@ -216,7 +216,7 @@
 <p>If you want to let authenticated users upload files, edit the <strong>vsftpd.conf</strong> file by entering the following:</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo nano /etc/vsftpd.conf</span><br></pre></td></tr></table></figure>
 <p>Find the entry labeled <em><strong>write_enable=NO</strong></em>, and change the value to “<strong>YES</strong>.”</p>
-<p><img src="/assets/uploads/files/1636216221569-write-enable-yes-vsftpd-conf.png" alt="write-enable-yes-vsftpd-conf.png"><br>
+<p><img src="/images/write-enable-yes-vsftpd-conf.png" alt="write-enable-yes-vsftpd-conf.png"><br>
 Save the file, exit, then restart the FTP service with the following:</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl restart vsftpd.service</span><br></pre></td></tr></table></figure>
 <p>This allows the user to make changes inside their home directory.</p>
@@ -226,14 +226,14 @@ Save the file, exit, then restart the FTP service with the following:</p>
 <p>One method is to limit users to their home directory. Open <strong>vsftpd.conf</strong> in an editor and uncomment the following command:</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chroot_local_user=YES</span><br></pre></td></tr></table></figure>
 <p>This is an example of the file in <strong>nano</strong>:<br>
-<img src="/assets/uploads/files/1636216302377-chroot-local-user-yes-vsftpd-conf.png" alt="chroot-local-user-yes-vsftpd-conf.png"></p>
+<img src="/images/chroot-local-user-yes-vsftpd-conf.png" alt="chroot-local-user-yes-vsftpd-conf.png"></p>
 <h3 id="Create-a-User-List-File">Create a User List File</h3>
 <p>To create a list file, edit <strong>/etc/vsftpd.chroot_list</strong>, and add one user per line.</p>
 <p>Instruct your FTP server to limit this list of users to their own home directories by editing <strong>vsftpd.conf</strong>:</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chroot_local_user=YES</span><br></pre></td></tr></table></figure>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chroot_list_file=/etc/vsftpd.chroot_list</span><br></pre></td></tr></table></figure>
 <p>The image ilustrates the edits that were made:<br>
-<img src="/assets/uploads/files/1636216446038-chroot-list-file-vsftpd.png" alt="chroot-list-file-vsftpd.png"><br>
+<img src="/images/chroot-list-file-vsftpd.png" alt="chroot-list-file-vsftpd.png"><br>
 Restart the <strong>vsftpd</strong> service:</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl restart vsftpd.service</span><br></pre></td></tr></table></figure>
 <p>By default, the list of blocked users from FTP access is stored in <strong>/etc/ftpusers</strong>. To add blocked users, edit this file and add one user per line.</p>
