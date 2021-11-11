@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="Introduction If you are looking to install an FTP server on Ubuntu, you can’t beat the simplicity of vsftpd . FTP stands for File Transfer Protocol. It is similar to HTTP (HyperText Transfer Protocol)">
+<meta property="og:type" content="article">
+<meta property="og:title" content="How To Install an FTP Server On Ubuntu with vsftpd">
+<meta property="og:url" content="https://cphpi.github.io/2021/11/07/How-To-Install-an-FTP-Server-On-Ubuntu-with-vsftpd/index.html">
+<meta property="og:site_name" content="CPH.PI BLOG">
+<meta property="og:description" content="Introduction If you are looking to install an FTP server on Ubuntu, you can’t beat the simplicity of vsftpd . FTP stands for File Transfer Protocol. It is similar to HTTP (HyperText Transfer Protocol)">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://192.168.100.150:4567/assets/uploads/files/1636215779765-how-to-install-ftp-server-on-ubuntu-using-vsftpd.png">
+<meta property="og:image" content="https://cphpi.github.io/assets/uploads/files/1636215849751-sudo-apt-get-update-ubuntu-vsftpd.png">
+<meta property="og:image" content="https://cphpi.github.io/assets/uploads/files/1636215894864-install-vsftpd-ubuntu-ftp.png">
+<meta property="og:image" content="https://cphpi.github.io/assets/uploads/files/1636215980766-configure-firewall-to-allow-ftp-traffic.png">
+<meta property="og:image" content="https://cphpi.github.io/assets/uploads/files/1636216221569-write-enable-yes-vsftpd-conf.png">
+<meta property="og:image" content="https://cphpi.github.io/assets/uploads/files/1636216302377-chroot-local-user-yes-vsftpd-conf.png">
+<meta property="og:image" content="https://cphpi.github.io/assets/uploads/files/1636216446038-chroot-list-file-vsftpd.png">
+<meta property="article:published_time" content="2021-11-07T10:08:00.000Z">
+<meta property="article:modified_time" content="2021-11-11T03:08:30.254Z">
+<meta property="article:author" content="PAKHO">
+<meta property="article:tag" content="Ubuntu">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://192.168.100.150:4567/assets/uploads/files/1636215779765-how-to-install-ftp-server-on-ubuntu-using-vsftpd.png">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>How To Install an FTP Server On Ubuntu with vsftpd</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/search/">Search</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a href="/tags/">Tag</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="Previous post" href="/2021/11/08/Install-PHP-8-0-on-Raspberry-Pi/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://cphpi.github.io/2021/11/07/How-To-Install-an-FTP-Server-On-Ubuntu-with-vsftpd/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://cphpi.github.io/2021/11/07/How-To-Install-an-FTP-Server-On-Ubuntu-with-vsftpd/&text=How To Install an FTP Server On Ubuntu with vsftpd"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://cphpi.github.io/2021/11/07/How-To-Install-an-FTP-Server-On-Ubuntu-with-vsftpd/&title=How To Install an FTP Server On Ubuntu with vsftpd"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://cphpi.github.io/2021/11/07/How-To-Install-an-FTP-Server-On-Ubuntu-with-vsftpd/&is_video=false&description=How To Install an FTP Server On Ubuntu with vsftpd"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=How To Install an FTP Server On Ubuntu with vsftpd&body=Check out this article: https://cphpi.github.io/2021/11/07/How-To-Install-an-FTP-Server-On-Ubuntu-with-vsftpd/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://cphpi.github.io/2021/11/07/How-To-Install-an-FTP-Server-On-Ubuntu-with-vsftpd/&title=How To Install an FTP Server On Ubuntu with vsftpd"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://cphpi.github.io/2021/11/07/How-To-Install-an-FTP-Server-On-Ubuntu-with-vsftpd/&title=How To Install an FTP Server On Ubuntu with vsftpd"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://cphpi.github.io/2021/11/07/How-To-Install-an-FTP-Server-On-Ubuntu-with-vsftpd/&title=How To Install an FTP Server On Ubuntu with vsftpd"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://cphpi.github.io/2021/11/07/How-To-Install-an-FTP-Server-On-Ubuntu-with-vsftpd/&title=How To Install an FTP Server On Ubuntu with vsftpd"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://cphpi.github.io/2021/11/07/How-To-Install-an-FTP-Server-On-Ubuntu-with-vsftpd/&name=How To Install an FTP Server On Ubuntu with vsftpd&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://cphpi.github.io/2021/11/07/How-To-Install-an-FTP-Server-On-Ubuntu-with-vsftpd/&t=How To Install an FTP Server On Ubuntu with vsftpd"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Introduction"><span class="toc-number">1.</span> <span class="toc-text">Introduction</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Prerequisites"><span class="toc-number">2.</span> <span class="toc-text">Prerequisites</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Step-1-Update-System-Packages"><span class="toc-number">2.1.</span> <span class="toc-text">Step 1: Update System Packages</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Step-2-Install-vsftpd-Server-on-Ubuntu"><span class="toc-number">2.2.</span> <span class="toc-text">Step 2: Install vsftpd Server on Ubuntu</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Step-3-Backup-Configuration-Files"><span class="toc-number">2.3.</span> <span class="toc-text">Step 3: Backup Configuration Files</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Step-4-Create-FTP-User"><span class="toc-number">2.4.</span> <span class="toc-text">Step 4: Create FTP User</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Step-6-Connect-to-Ubuntu-FTP-Server"><span class="toc-number">2.5.</span> <span class="toc-text">Step 6: Connect to Ubuntu FTP Server</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Configuring-and-Securing-Ubuntu-vsftpd-Server"><span class="toc-number">3.</span> <span class="toc-text">Configuring and Securing Ubuntu vsftpd Server</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Change-Default-Directory"><span class="toc-number">3.1.</span> <span class="toc-text">Change Default Directory</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Authenticate-FTP-Users"><span class="toc-number">3.2.</span> <span class="toc-text">Authenticate FTP Users</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Securing-FTP"><span class="toc-number">4.</span> <span class="toc-text">Securing FTP</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Limit-User-Access"><span class="toc-number">4.1.</span> <span class="toc-text">Limit User Access</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Create-a-User-List-File"><span class="toc-number">4.2.</span> <span class="toc-text">Create a User List File</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Encrypt-Traffic-With-FTPS"><span class="toc-number">4.3.</span> <span class="toc-text">Encrypt Traffic With FTPS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Conclusion"><span class="toc-number">4.4.</span> <span class="toc-text">Conclusion</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        How To Install an FTP Server On Ubuntu with vsftpd
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">PAKHO</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2021-11-07T10:08:00.000Z" itemprop="datePublished">2021-11-07</time>
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link-link" href="/tags/Ubuntu/" rel="tag">Ubuntu</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="Introduction">Introduction</h2>
+<p><strong>If you are looking to install an FTP server on Ubuntu, you can’t beat the simplicity of vsftpd .</strong></p>
+<p>FTP stands for File Transfer Protocol. It is similar to HTTP (HyperText Transfer Protocol), in that it specifies a language for transferring data over a network. FTP is unencrypted by default, so by itself, it is not a good choice for secure transmission of data.</p>
+<p>This guide will help you install and configure an FTP server with vsftpd on Ubuntu.</p>
+<p><img src="http://192.168.100.150:4567/assets/uploads/files/1636215779765-how-to-install-ftp-server-on-ubuntu-using-vsftpd.png" alt="how-to-install-ftp-server-on-ubuntu-using-vsftpd.png"></p>
+<h2 id="Prerequisites">Prerequisites</h2>
+<ul>
+<li>Access to a user account with sudo privileges</li>
+<li>Access to a terminal window/command line (Ctrl-Alt-T)</li>
+<li>The apt package manager, included by default</li>
+</ul>
+<h3 id="Step-1-Update-System-Packages">Step 1: Update System Packages</h3>
+<p>Start by updating your repositories – enter the following in a terminal window:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt update</span><br></pre></td></tr></table></figure>
+<p>The system proceeds to update the repositories.<br>
+<img src="/assets/uploads/files/1636215849751-sudo-apt-get-update-ubuntu-vsftpd.png" alt="sudo-apt-get-update-ubuntu-vsftpd.png"></p>
+<h3 id="Step-2-Install-vsftpd-Server-on-Ubuntu">Step 2: Install vsftpd Server on Ubuntu</h3>
+<p>A common open-source FTP utility used in Ubuntu is vsftpd. It is recommended for its ease of use.</p>
+<ol>
+<li>To install vsftpd, enter the command:</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install vsftpd</span><br></pre></td></tr></table></figure>
+<p>This is an example of the output in Ubuntu.</p>
+<p><img src="/assets/uploads/files/1636215894864-install-vsftpd-ubuntu-ftp.png" alt="install-vsftpd-ubuntu-ftp.png"></p>
+<ol start="2">
+<li>To launch the service and enable it at startup, run the commands:</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl start vsftpd</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl enable vsftpd</span><br></pre></td></tr></table></figure>
+<h3 id="Step-3-Backup-Configuration-Files">Step 3: Backup Configuration Files</h3>
+<p>Before making any changes, make sure to back up your configuration files.</p>
+<ol>
+<li>Create a backup copy of the default configuration file by entering the following:</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo cp /etc/vsftpd.conf  /etc/vsftpd.conf_default</span><br></pre></td></tr></table></figure>
+<h3 id="Step-4-Create-FTP-User">Step 4: Create FTP User</h3>
+<p>Create a new FTP user with the following commands:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo useradd -m testuser</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ufw allow 21/tcp</span><br></pre></td></tr></table></figure>
+<p><img src="/assets/uploads/files/1636215980766-configure-firewall-to-allow-ftp-traffic.png" alt="configure-firewall-to-allow-ftp-traffic.png"></p>
+<h3 id="Step-6-Connect-to-Ubuntu-FTP-Server">Step 6: Connect to Ubuntu FTP Server</h3>
+<p>Connect to the FTP server with the following command:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ftp ubuntu-ftp</span><br></pre></td></tr></table></figure>
+<p>Replace <em><strong>ubuntu-ftp</strong></em> with the name of your system (taken from the command line).</p>
+<p><strong>Log in</strong> using the <strong>testuser</strong> account and password you just set. You should now be successfully logged in to your FTP server.</p>
+<h2 id="Configuring-and-Securing-Ubuntu-vsftpd-Server">Configuring and Securing Ubuntu vsftpd Server</h2>
+<h3 id="Change-Default-Directory">Change Default Directory</h3>
+<p>By default, the FTP server uses the <strong>/srv/ftp</strong> directory as the default directory. You can change this by creating a new directory and changing the FTP user home directory.</p>
+<p>To change the FTP home directory, enter the following:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo mkdir /srv/ftp/new_location</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo usermod -d /srv/ftp/new_location ftp</span><br></pre></td></tr></table></figure>
+<p>Restart the <strong>vsftpd</strong> service to apply the changes:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl restart vsftpd.service</span><br></pre></td></tr></table></figure>
+<p>Now, you can put any files you want to share via FTP into the <strong>/srv/ftp</strong> folder (if you left it as the default), or the <em><strong>/srv/ftp/new_location/</strong></em> directory (if you changed it).</p>
+<h3 id="Authenticate-FTP-Users">Authenticate FTP Users</h3>
+<p>If you want to let authenticated users upload files, edit the <strong>vsftpd.conf</strong> file by entering the following:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo nano /etc/vsftpd.conf</span><br></pre></td></tr></table></figure>
+<p>Find the entry labeled <em><strong>write_enable=NO</strong></em>, and change the value to “<strong>YES</strong>.”</p>
+<p><img src="/assets/uploads/files/1636216221569-write-enable-yes-vsftpd-conf.png" alt="write-enable-yes-vsftpd-conf.png"><br>
+Save the file, exit, then restart the FTP service with the following:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl restart vsftpd.service</span><br></pre></td></tr></table></figure>
+<p>This allows the user to make changes inside their home directory.</p>
+<h2 id="Securing-FTP">Securing FTP</h2>
+<p>Numerous exploits take advantage of unsecured FTP servers. In response, there are several configuration options in vsftpd.conf that can help secure your FTP server.</p>
+<h3 id="Limit-User-Access">Limit User Access</h3>
+<p>One method is to limit users to their home directory. Open <strong>vsftpd.conf</strong> in an editor and uncomment the following command:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chroot_local_user=YES</span><br></pre></td></tr></table></figure>
+<p>This is an example of the file in <strong>nano</strong>:<br>
+<img src="/assets/uploads/files/1636216302377-chroot-local-user-yes-vsftpd-conf.png" alt="chroot-local-user-yes-vsftpd-conf.png"></p>
+<h3 id="Create-a-User-List-File">Create a User List File</h3>
+<p>To create a list file, edit <strong>/etc/vsftpd.chroot_list</strong>, and add one user per line.</p>
+<p>Instruct your FTP server to limit this list of users to their own home directories by editing <strong>vsftpd.conf</strong>:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chroot_local_user=YES</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chroot_list_file=/etc/vsftpd.chroot_list</span><br></pre></td></tr></table></figure>
+<p>The image ilustrates the edits that were made:<br>
+<img src="/assets/uploads/files/1636216446038-chroot-list-file-vsftpd.png" alt="chroot-list-file-vsftpd.png"><br>
+Restart the <strong>vsftpd</strong> service:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl restart vsftpd.service</span><br></pre></td></tr></table></figure>
+<p>By default, the list of blocked users from FTP access is stored in <strong>/etc/ftpusers</strong>. To add blocked users, edit this file and add one user per line.</p>
+<h3 id="Encrypt-Traffic-With-FTPS">Encrypt Traffic With FTPS</h3>
+<p>Another method to secure your FTP server is to encrypt the traffic. This is done by using <strong>FTPS</strong> – File Transfer Protocol over SSL (Secure Socket Layer).</p>
+<p>For this to work, users need to be set up with a shell account on the FTP server. This will add a layer of secure encryption to your FTP traffic.</p>
+<ol>
+<li>Start by creating a new certificate with openssl. To do so, run the command:</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/private/vsftpd.pem -out /etc/ssl/private/vsftpd.pem</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>
+<p>Provide the required information when prompted or keep the default configuration by pressing <strong>Enter</strong>.</p>
+</li>
+<li>
+<p>Next, open your <strong>vsftpd.conf</strong> file in an editor and change the line <strong>ssl_enable=NO</strong> to <strong>ssl_enable=YES</strong>:</p>
+</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssl_enable=YES</span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li>Then, add the following lines:</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">rsa_cert_file=/etc/ssl/private/vsftpd.pem</span><br><span class="line">rsa_private_key_file=/etc/ssl/private/vsftpd.pem</span><br><span class="line">allow_anon_ssl=NO</span><br><span class="line">force_local_data_ssl=YES</span><br><span class="line">force_local_logins_ssl=YES</span><br><span class="line">ssl_tlsv1=YES</span><br><span class="line">ssl_sslv2=NO</span><br><span class="line">ssl_sslv3=NO</span><br><span class="line">require_ssl_reuse=NO</span><br><span class="line">ssl_ciphers=HIGH</span><br><span class="line">pasv_min_port=40000</span><br><span class="line">pasv_max_port=50000</span><br></pre></td></tr></table></figure>
+<ol start="5">
+<li>
+<p>Save the changes and exit the file.</p>
+</li>
+<li>
+<p>Finally, restart the service to apply the changes:</p>
+</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl restart vsftpd.service</span><br></pre></td></tr></table></figure>
+<p><strong>Note:</strong> For more information on SSL configurations and certificates, please see the Ubuntu <a target="_blank" rel="noopener" href="https://ubuntu.com/server/docs">FTP server documentation</a>. Also, it’s worth noting that FTPS is a different protocol that SFTP. SFTP stands for Secure File Transfer Protocol, and it’s an entirely different protocol.</p>
+<h3 id="Conclusion">Conclusion</h3>
+<p>Now, you should have installed an FTP server on Ubuntu with <strong>vsftpd</strong>.</p>
+<p>You should now be able to configure your user lists and accounts, and connect to your new FTP server. We also detailed the risks of the FTP protocol, and how to mitigate them.</p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/search/">Search</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/tags/">Tag</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Introduction"><span class="toc-number">1.</span> <span class="toc-text">Introduction</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Prerequisites"><span class="toc-number">2.</span> <span class="toc-text">Prerequisites</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Step-1-Update-System-Packages"><span class="toc-number">2.1.</span> <span class="toc-text">Step 1: Update System Packages</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Step-2-Install-vsftpd-Server-on-Ubuntu"><span class="toc-number">2.2.</span> <span class="toc-text">Step 2: Install vsftpd Server on Ubuntu</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Step-3-Backup-Configuration-Files"><span class="toc-number">2.3.</span> <span class="toc-text">Step 3: Backup Configuration Files</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Step-4-Create-FTP-User"><span class="toc-number">2.4.</span> <span class="toc-text">Step 4: Create FTP User</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Step-6-Connect-to-Ubuntu-FTP-Server"><span class="toc-number">2.5.</span> <span class="toc-text">Step 6: Connect to Ubuntu FTP Server</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Configuring-and-Securing-Ubuntu-vsftpd-Server"><span class="toc-number">3.</span> <span class="toc-text">Configuring and Securing Ubuntu vsftpd Server</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Change-Default-Directory"><span class="toc-number">3.1.</span> <span class="toc-text">Change Default Directory</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Authenticate-FTP-Users"><span class="toc-number">3.2.</span> <span class="toc-text">Authenticate FTP Users</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Securing-FTP"><span class="toc-number">4.</span> <span class="toc-text">Securing FTP</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Limit-User-Access"><span class="toc-number">4.1.</span> <span class="toc-text">Limit User Access</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Create-a-User-List-File"><span class="toc-number">4.2.</span> <span class="toc-text">Create a User List File</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Encrypt-Traffic-With-FTPS"><span class="toc-number">4.3.</span> <span class="toc-text">Encrypt Traffic With FTPS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Conclusion"><span class="toc-number">4.4.</span> <span class="toc-text">Conclusion</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://cphpi.github.io/2021/11/07/How-To-Install-an-FTP-Server-On-Ubuntu-with-vsftpd/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://cphpi.github.io/2021/11/07/How-To-Install-an-FTP-Server-On-Ubuntu-with-vsftpd/&text=How To Install an FTP Server On Ubuntu with vsftpd"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://cphpi.github.io/2021/11/07/How-To-Install-an-FTP-Server-On-Ubuntu-with-vsftpd/&title=How To Install an FTP Server On Ubuntu with vsftpd"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://cphpi.github.io/2021/11/07/How-To-Install-an-FTP-Server-On-Ubuntu-with-vsftpd/&is_video=false&description=How To Install an FTP Server On Ubuntu with vsftpd"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=How To Install an FTP Server On Ubuntu with vsftpd&body=Check out this article: https://cphpi.github.io/2021/11/07/How-To-Install-an-FTP-Server-On-Ubuntu-with-vsftpd/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://cphpi.github.io/2021/11/07/How-To-Install-an-FTP-Server-On-Ubuntu-with-vsftpd/&title=How To Install an FTP Server On Ubuntu with vsftpd"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://cphpi.github.io/2021/11/07/How-To-Install-an-FTP-Server-On-Ubuntu-with-vsftpd/&title=How To Install an FTP Server On Ubuntu with vsftpd"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://cphpi.github.io/2021/11/07/How-To-Install-an-FTP-Server-On-Ubuntu-with-vsftpd/&title=How To Install an FTP Server On Ubuntu with vsftpd"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://cphpi.github.io/2021/11/07/How-To-Install-an-FTP-Server-On-Ubuntu-with-vsftpd/&title=How To Install an FTP Server On Ubuntu with vsftpd"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://cphpi.github.io/2021/11/07/How-To-Install-an-FTP-Server-On-Ubuntu-with-vsftpd/&name=How To Install an FTP Server On Ubuntu with vsftpd&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://cphpi.github.io/2021/11/07/How-To-Install-an-FTP-Server-On-Ubuntu-with-vsftpd/&t=How To Install an FTP Server On Ubuntu with vsftpd"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2016-2021
+    PAKHO
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/search/">Search</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a href="/tags/">Tag</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>
