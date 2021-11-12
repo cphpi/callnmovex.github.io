@@ -4,6 +4,19 @@
   
     
     <entry>
+      <title></title>
+      <link href="/2021/11/12/Ubuntu-Run-sh-sudo-auto-type-password/"/>
+      <url>/2021/11/12/Ubuntu-Run-sh-sudo-auto-type-password/</url>
+      
+        <content type="html"><![CDATA[<p>title: ubuntu运行sh脚本sudo自动输入密码<br>author: PAKHO<br>tags:</p><h1>ubuntu运行sh脚本sudo自动输入密码</h1><p>以如下代码为例</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update </span><br></pre></td></tr></table></figure><h1>第一种方法</h1><p>使用管道（上一个命令的 stdout 接到下一个命令的 stdin）:</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="built_in">echo</span> password | sudo -S apt-get update</span><br></pre></td></tr></table></figure><h1>第二种方法</h1><p>使用文本块输入重定向:</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line">sudo -S apt-get update &lt;&lt; <span class="string">EOF </span></span><br><span class="line"><span class="string">你的密码</span></span><br><span class="line"><span class="string">EOF</span></span><br></pre></td></tr></table></figure><p>说明：</p><blockquote><p>在shell脚本中，通常将EOF与 &lt;&lt; 结合使用，表示后续的输入作为子命令或子Shell的输入，直到遇到EOF为止，再返回到主Shell,即将‘你的密码’当做命令的输入</p></blockquote><h1>-S参数的作用</h1><p>使用man命令查询sudo，对参数-S的说明如下：</p><blockquote><p>Write the prompt to the standard error and read the password from the standard input instead of using the terminal device. The password must be followed by a newline character.</p></blockquote><p>可见加上-S参数sudo才会从标准输入中读取密码，不加-S参数以上命令将起不到作用</p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>How to Set up FTP Server on Your Raspberry Pi</title>
       <link href="/2021/11/12/How-to-Set-up-FTP-Server-on-Your-Raspberry-Pi/"/>
       <url>/2021/11/12/How-to-Set-up-FTP-Server-on-Your-Raspberry-Pi/</url>
