@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://www.google.com/recaptcha/api.js?render=6LeX-PQqAAAAADavvWOhyQipTY6lsVa56HPuW0Ea"></script>
+  <script>
+    let retryCount = 0;
+    function executeRecaptcha() {
+      console.log('嘗試執行 reCAPTCHA...'); // 調試輸出
+      if (typeof grecaptcha === 'undefined' || retryCount >= 3) {
+        console.error('reCAPTCHA script 載入失敗');
+        return;
+      }
+      grecaptcha.ready(function() {
+        grecaptcha.execute('6LeX-PQqAAAAADavvWOhyQipTY6lsVa56HPuW0Ea', {action: 'register'})
+          .then(function(token) {
+            console.log('成功獲取 Token:', token); // 調試輸出
+            console.log('準備發送 Token 到 Flutter:', token); // 新增這行
+            RecaptchaJSChannel.postMessage(token);
+          })
+          .catch(function(error) {
+            console.error('reCAPTCHA 執行失敗:', error);
+            setTimeout(executeRecaptcha, 1000);
+            retryCount++;
+          });
+      });
+    }
+    window.onload = executeRecaptcha;
+  </script>
+</head>
+<body></body>
+</html>
