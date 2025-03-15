@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cloudflare Turnstile</title>
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+    <script>
+        function handleTurnstileCallback(token) {
+            // 使用 webview_flutter 套件的方法將 token 發送給 Flutter
+            TurnstileJSChannel.postMessage(token);
+        }
+
+        function handleTurnstileExpired() {
+            console.log("Turnstile 已過期");
+        }
+
+        function handleTurnstileError(error) {
+            console.error("Turnstile 發生錯誤:", error);
+        }
+    </script>
+</head>
+<body>
+    <div class="cf-turnstile"
+         data-sitekey="0x4AAAAAABA7EZ5BLK-frz8q"
+         data-callback="handleTurnstileCallback"
+         data-expired-callback="handleTurnstileExpired"
+         data-error-callback="handleTurnstileError">
+    </div>
+</body>
+</html>
