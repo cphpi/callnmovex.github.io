@@ -1,130 +1,479 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-hk">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Callnmovex - On-Demand Van Service UK</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <!-- 新增 favicon -->
-    <link rel="shortcut icon" href="https://callnmovex.uk/images/favicon.ico" type="image/x-icon">
+    <title>Callnmovex - 智能貨運平台</title>
+    <meta name="description" content="智能貨運匹配平台，即時追蹤安全高效">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --primary: #00FF88;
+            --dark: #0A0A0A;
+            --gray: #1A1A1A;
+            --container-padding: 1.5rem;
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Arial', sans-serif;
+            font-family: 'Inter', sans-serif;
         }
 
         body {
-            background-color: #ffffff;
-            color: #000000;
-            line-height: 1.6;
+            background: var(--dark);
+            color: white;
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* 頁首改進 */
+        header {
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 var(--container-padding);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            z-index: 1001;
+        }
+
+        .logo img {
+            height: 45px;
+            width: auto;
+        }
+
+        .logo-text {
+            font-weight: 700;
+            font-size: 1.8rem;
+            color: white; /* 改為純白色 */
+            letter-spacing: -0.5px;
+            text-transform: uppercase; /* 保持大寫 */
+            position: relative;
+            padding: 0.3rem 0;
+        }
+
+        .logo-text::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--primary); /* 底部保留裝飾線 */
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover .logo-text::after {
+            transform: scaleX(1); /* hover時顯示下劃線動畫 */
+        }
+
+        @media (max-width: 480px) {
+            .logo-text {
+                font-size: 1.5rem;
+            }
+        }
+
+        /* 導航菜單改進 */
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: 0.3s;
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-link i {
+            font-size: 0.9em;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: 0.3s;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* 按鈕樣式 */
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: 0.3s;
+            text-decoration: none;
+        }
+
+        .btn.primary {
+            background: var(--primary);
+            color: var(--dark);
+        }
+
+        .btn.outline {
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+
+        /* 漢堡選單 */
+        .hamburger {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        /* 英雄區改進 */
+        #hero {
+            padding: 160px 0 80px;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid var(--gray);
         }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 40px 20px;
-            text-align: center;
+            padding: 0 var(--container-padding);
         }
 
-        .logo {
-            font-size: 2.5em;
-            font-weight: bold;
-            margin-bottom: 30px;
-            text-transform: uppercase;
-            letter-spacing: 3px;
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
         }
 
-        .hero {
-            padding: 60px 0;
+        .hero-content h1 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
         }
 
-        /* 修改圖標樣式 */
-        .van-icon {
-            width: 120px;
-            height: auto;
-            margin: 30px 0;
-            border-radius: 20px;
+        .highlight {
+            color: var(--primary);
         }
 
-        .download-btn {
-            display: inline-block;
-            background: #000;
-            color: #fff;
-            padding: 15px 40px;
-            text-decoration: none;
-            border-radius: 30px;
-            margin: 30px 0;
-            transition: transform 0.3s;
-            border: 2px solid #000;
-        }
-
-        .download-btn:hover {
-            transform: scale(1.05);
-            background: #333;
-        }
-
-        .features {
+        .download-badges {
             display: flex;
-            justify-content: center;
-            gap: 40px;
-            margin: 50px 0;
+            gap: 1rem;
+            margin-top: 2rem;
             flex-wrap: wrap;
         }
 
-        .feature-item {
-            flex: 1;
-            min-width: 250px;
-            padding: 20px;
-            border: 1px solid #eee;
-            border-radius: 10px;
+        .download-badges img {
+            height: 45px;
+            width: auto;
         }
 
-        footer {
-            margin-top: 50px;
-            padding: 20px;
-            border-top: 1px solid #eee;
+        .hero-image {
+            position: relative;
+            text-align: center;
+        }
+
+        .hero-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        /* 功能區改進 */
+        #features {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-item {
+            padding: 2rem;
+            background: var(--gray);
+            border-radius: 16px;
+            text-align: center;
+            transition: 0.3s;
+        }
+
+        .feature-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            width: 70px;
+            height: 70px;
+            background: var(--dark);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            color: var(--primary);
+            margin: 0 auto 1.5rem;
+            transition: 0.3s;
+        }
+
+        /* 步驟流程改進 */
+        .steps-container {
+            padding: 80px 0;
+            position: relative;
+        }
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            position: relative;
+        }
+
+        .step-item {
+            text-align: center;
+            padding: 2rem;
+            background: var(--gray);
+            border-radius: 16px;
+            position: relative;
+        }
+
+        .step-number {
+            width: 50px;
+            height: 50px;
+            background: var(--primary);
+            color: var(--dark);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            margin: 0 auto 1rem;
+        }
+
+        .step-line {
+            position: absolute;
+            height: 3px;
+            background: var(--gray);
+            width: 70%;
+            top: 50%;
+            left: 15%;
+            transform: translateY(-50%);
+        }
+
+        /* 響應式設計 */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+
+            .nav-menu {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 80%;
+                max-width: 300px;
+                height: 100vh;
+                background: var(--dark);
+                flex-direction: column;
+                padding: 6rem 2rem 2rem;
+                gap: 1.5rem;
+                transition: 0.3s;
+            }
+
+            .nav-menu.active {
+                right: 0;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                width: 100%;
+                gap: 1rem;
+                margin-top: 1rem;
+            }
+
+            .hero-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 3rem;
+            }
+
+            .download-badges {
+                justify-content: center;
+            }
+
+            .steps {
+                grid-template-columns: 1fr;
+                gap: 4rem;
+            }
+
+            .step-line {
+                display: none;
+            }
+        }
+
+        @media (max-width: 480px) {
+            :root {
+                --container-padding: 1rem;
+            }
+
+            .btn {
+                width: 100%;
+                text-align: center;
+            }
+
+            .hero-content h1 {
+                font-size: 2.2rem;
+            }
         }
     </style>
 </head>
+
 <body>
-    <div class="container">
-        <div class="logo">Callnmovex</div>
-        
-        <div class="hero">
-            <!-- 修改為自定義圖標 -->
-            <img src="https://callnmovex.uk/images/icon-512.png" 
-                 alt="Callnmovex Van Icon"
-                 class="van-icon">
-            <h1>On-Demand Van Service in UK</h1>
-            <p>Reliable & Affordable Transportation Solutions</p>
-            
-            <a href="https://apps.apple.com/gb/app/callnmovex/id6740782153" 
-               class="download-btn" 
-               target="_blank">
-                Download on App Store
-            </a>
-        </div>
+    <header>
+        <nav class="nav-container">
+            <div class="logo">
+                <span class="logo-text">CallnMoveX</span>
+            </div>
+            <button class="hamburger"><i class="fas fa-bars"></i></button>
+            <div class="nav-menu">
+                <a href="#features" class="nav-link"><i class="fas fa-star"></i> 特色功能</a>
+                <a href="#how-it-works" class="nav-link"><i class="fas fa-play-circle"></i> 使用流程</a>
+                <div class="cta-buttons">
+                    <a href="#" class="btn primary">司機註冊</a>
+                    <a href="#" class="btn outline">用戶登入</a>
+                </div>
+            </div>
+        </nav>
+    </header>
 
-        <div class="features">
-            <div class="feature-item">
-                <h3><i class="fas fa-clock"></i> Instant Booking</h3>
-                <p>Get a van within minutes</p>
+    <main>
+        <!-- 英雄區塊 -->
+        <section id="hero">
+            <div class="container">
+                <div class="hero-grid">
+                    <div class="hero-content">
+                        <h1>智能貨運<br><span class="highlight">在英國重新定義物流效率</span></h1>
+                        <p class="lead">透過AI匹配算法，即時連接貨主與專業司機</p>
+                        <div class="download-badges">
+                            <a href="https://apps.apple.com/gb/app/callnmovex/id6740782153"><img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Download_on_the_App_Store_RGB_blk.svg" alt="App Store"></a>
+                            <a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Google Play"></a>
+                        </div>
+                    </div>
+                    <div class="hero-image">
+                        <img src="app-screens.png" alt="App介面" class="hero-app-image">
+                    </div>
+                </div>
             </div>
-            <div class="feature-item">
-                <h3><i class="fas fa-pound-sign"></i> Fixed Prices</h3>
-                <p>No surge pricing</p>
-            </div>
-            <div class="feature-item">
-                <h3><i class="fas fa-shield-alt"></i> Fully Insured</h3>
-                <p>Your goods are protected</p>
-            </div>
-        </div>
+        </section>
 
-        <footer>
-            <p>© 2025 Callnmovex. All rights reserved.</p>
+
+        <!-- 使用流程區塊 -->
+        <section class="steps-container" id="how-it-works">
+            <div class="container">
+                <h2 class="section-title">簡單三步驟</h2>
+                <div class="steps">
+                    <div class="step-item">
+                        <div class="step-number">1</div>
+                        <h4>即時報價</h4>
+                        <p>輸入需求立即取得精準報價</p>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-number">2</div>
+                        <h4>智能匹配</h4>
+                        <p>AI推薦最合適司機與車輛</p>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-number">3</div>
+                        <h4>即時追蹤</h4>
+                        <p>全程GPS定位確保準時送達</p>
+                    </div>
+                </div>
+                <!-- <div class="step-line"></div> -->
+            </div>
+        </section>
+    </main>
+
+        <!-- 新增的footer部分 -->
+        <footer class="site-footer">
+            <div class="container">
+                <p class="copyright">&copy; 2025 PHDEV CallnMoveX. All rights reserved.</p>
+            </div>
         </footer>
-    </div>
+
+    <script>
+        // 漢堡選單切換
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+
+        hamburger.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            hamburger.classList.toggle('active');
+        });
+
+        // 關閉選單當點擊外部區域
+        document.addEventListener('click', (e) => {
+            if (!navMenu.contains(e.target) && !hamburger.contains(e.target)) {
+                navMenu.classList.remove('active');
+                hamburger.classList.remove('active');
+            }
+        });
+
+        // 平滑滾動
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
 </body>
+
 </html>
