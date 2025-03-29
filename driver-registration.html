@@ -370,11 +370,11 @@
 
                 // 收集表單數據
                 const formData = {
-                    name: form.name.value,
-                    email: form.email.value,
-                    phone: form.phone.value,
-                    vehicle_type: form.vehicle_type.value,
-                    license_number: form.license_number.value,
+                    name: form.elements['name'].value,
+                    email: form.elements['email'].value,
+                    phone: form.elements['phone'].value,
+                    vehicle_type: form.elements['vehicle-type'].value,
+                    license_number: form.elements['license-number'].value,
                 };
 
                 // 使用 EmailJS 發送郵件
