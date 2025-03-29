@@ -8,6 +8,7 @@
     <meta name="description" content="加入Callnmovex，成為我們的專業司機夥伴">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <style>
         :root {
             --primary: #00FF88;
@@ -344,6 +345,9 @@
                         <label for="license-number">駕駛執照號碼</label>
                         <input type="text" id="license-number" name="license-number" required>
                     </div>
+                    <div class="form-group">
+                        <div class="g-recaptcha" data-sitekey="6Lev4wMrAAAAAOoBB20j5m5BWdO3_cGAG9WPwbHz"></div>
+                    </div>
                     <button type="submit" class="submit-btn">立即註冊</button>
                     <div class="message"></div>
                 </form>
@@ -354,7 +358,7 @@
     <footer class="site-footer">
         <div class="container">
             <p class="copyright">&copy; 2025 PHDEV CallnMoveX. All rights reserved.</p>
-            <p><a href="terms.html" style="color: #eee; text-decoration: underline;">條款及細則</a></p>
+            <p><a href="termsx.html" style="color: #eee; text-decoration: underline;">條款及細則</a></p>
         </div>
     </footer>
 
@@ -367,6 +371,13 @@
 
             form.addEventListener('submit', function(event) {
                 event.preventDefault();
+
+                const recaptchaResponse = grecaptcha.getResponse();
+                if (!recaptchaResponse) {
+                    messageDiv.className = 'message error-message';
+                    messageDiv.textContent = '請完成 reCAPTCHA 驗證。';
+                    return; // 阻止表單提交
+                }
 
                 // 收集表單數據
                 const formData = {
