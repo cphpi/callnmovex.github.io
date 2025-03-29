@@ -359,11 +359,8 @@
     </footer>
 
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-    <script>
-        (function() {
-            emailjs.init('YOUR_USER_ID'); // 將 'YOUR_USER_ID' 替換為您在 EmailJS 儀表板中獲得的 User ID
-        })();
 
+    <script>
         document.addEventListener('DOMContentLoaded', function() {
             const form = document.getElementById('driver-registration-form');
             const messageDiv = document.querySelector('#driver-registration-section .message');
@@ -378,8 +375,6 @@
                     phone: form.phone.value,
                     vehicle_type: form.vehicle_type.value,
                     license_number: form.license_number.value,
-                    password: form.password.value,
-                    confirm_password: form.confirm_password.value
                 };
 
                 // 使用 EmailJS 發送郵件
