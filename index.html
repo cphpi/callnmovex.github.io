@@ -6,9 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Callnmovex - 智能貨運平台</title>
     <meta name="description" content="智能貨運匹配平台，即時追蹤安全高效">
-    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -371,6 +369,25 @@
                 font-size: 2.2rem;
             }
         }
+
+        /* Footer 樣式 */
+        .site-footer {
+            background: var(--gray);
+            color: #eee;
+            padding: 2rem 0;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        .site-footer .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--container-padding);
+        }
+
+        .site-footer .copyright {
+            margin-bottom: 0;
+        }
     </style>
 </head>
 
@@ -393,7 +410,6 @@
     </header>
 
     <main>
-        <!-- 英雄區塊 -->
         <section id="hero">
             <div class="container">
                 <div class="hero-grid">
@@ -413,7 +429,6 @@
         </section>
 
 
-        <!-- 使用流程區塊 -->
         <section class="steps-container" id="how-it-works">
             <div class="container">
                 <h2 class="section-title">簡單三步驟</h2>
@@ -434,17 +449,16 @@
                         <p>全程GPS定位確保準時送達</p>
                     </div>
                 </div>
-                <!-- <div class="step-line"></div> -->
-            </div>
+                </div>
         </section>
     </main>
 
-        <!-- 新增的footer部分 -->
-        <footer class="site-footer">
-            <div class="container">
-                <p class="copyright">&copy; 2025 PHDEV CallnMoveX. All rights reserved.</p>
-            </div>
-        </footer>
+    <footer class="site-footer">
+        <div class="container">
+            <p class="copyright">&copy; 2025 PHDEV CallnMoveX. All rights reserved.</p>
+            <p><a href="terms.html" style="color: #eee; text-decoration: underline;">條款及細則</a></p>
+        </div>
+    </footer>
 
     <script>
         // 漢堡選單切換
