@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="zh-hk">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Callnmovex - 司機註冊</title>
+    <meta name="description" content="加入Callnmovex，成為我們的專業司機夥伴">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #00FF88;
+            --dark: #0A0A0A;
+            --gray: #1A1A1A;
+            --container-padding: 1.5rem;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background: var(--dark);
+            color: white;
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* 頁首改進 */
+        header {
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 var(--container-padding);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            z-index: 1001;
+        }
+
+        .logo img {
+            height: 45px;
+            width: auto;
+        }
+
+        .logo-text {
+            font-weight: 700;
+            font-size: 1.8rem;
+            color: white; /* 改為純白色 */
+            letter-spacing: -0.5px;
+            text-transform: uppercase; /* 保持大寫 */
+            position: relative;
+            padding: 0.3rem 0;
+        }
+
+        .logo-text::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--primary); /* 底部保留裝飾線 */
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover .logo-text::after {
+            transform: scaleX(1); /* hover時顯示下劃線動畫 */
+        }
+
+        @media (max-width: 480px) {
+            .logo-text {
+                font-size: 1.5rem;
+            }
+        }
+
+        /* 導航菜單改進 */
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: 0.3s;
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-link i {
+            font-size: 0.9em;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: 0.3s;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* 按鈕樣式 */
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: 0.3s;
+            text-decoration: none;
+        }
+
+        .btn.primary {
+            background: var(--primary);
+            color: var(--dark);
+        }
+
+        .btn.outline {
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+
+        /* 漢堡選單 */
+        .hamburger {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        /* 表單樣式 */
+        #driver-registration-section {
+            padding: 120px 0 80px; /* 調整頂部 padding 以避開固定 header */
+        }
+
+        #driver-registration-section .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: var(--gray);
+            padding: 2rem;
+            border-radius: 16px;
+        }
+
+        #driver-registration-section h2 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+        }
+
+        #driver-registration-section .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        #driver-registration-section label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        #driver-registration-section input[type="text"],
+        #driver-registration-section input[type="email"],
+        #driver-registration-section input[type="tel"],
+        #driver-registration-section input[type="password"],
+        #driver-registration-section select {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid var(--dark);
+            border-radius: 8px;
+            background: var(--dark);
+            color: white;
+            box-sizing: border-box;
+        }
+
+        #driver-registration-section button.submit-btn {
+            display: block;
+            width: 100%;
+            padding: 1rem;
+            background: var(--primary);
+            color: var(--dark);
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        #driver-registration-section button.submit-btn:hover {
+            opacity: 0.9;
+        }
+
+        /* 響應式設計 */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+
+            .nav-menu {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 80%;
+                max-width: 300px;
+                height: 100vh;
+                background: var(--dark);
+                flex-direction: column;
+                padding: 6rem 2rem 2rem;
+                gap: 1.5rem;
+                transition: 0.3s;
+            }
+
+            .nav-menu.active {
+                right: 0;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                width: 100%;
+                gap: 1rem;
+                margin-top: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            :root {
+                --container-padding: 1rem;
+            }
+        }
+
+        /* Footer 樣式 */
+        .site-footer {
+            background: var(--gray);
+            color: #eee;
+            padding: 2rem 0;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        .site-footer .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--container-padding);
+        }
+
+        .site-footer .copyright {
+            margin-bottom: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav class="nav-container">
+            <div class="logo">
+                <a href="index.html" style="text-decoration: none; color: inherit;">
+                    <span class="logo-text">CallnMoveX</span>
+                </a>
+            </div>
+            <button class="hamburger"><i class="fas fa-bars"></i></button>
+            <div class="nav-menu">
+                <a href="index.html#features" class="nav-link"><i class="fas fa-star"></i> 特色功能</a>
+                <a href="index.html#how-it-works" class="nav-link"><i class="fas fa-play-circle"></i> 使用流程</a>
+                <div class="cta-buttons">
+                    <a href="#" class="btn primary">用戶登入</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section id="driver-registration-section">
+            <div class="container">
+                <h2>司機註冊</h2>
+                <form id="driver-registration-form">
+                    <div class="form-group">
+                        <label for="name">姓名</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">電子郵件</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">電話號碼</label>
+                        <input type="tel" id="phone" name="phone" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="vehicle-type">車輛類型</label>
+                        <select id="vehicle-type" name="vehicle-type" required>
+                            <option value="">請選擇</option>
+                            <option value="van">客貨車</option>
+                            <option value="truck">貨車</option>
+                            <option value="motorbike">電單車</option>
+                            <option value="bicycle">單車</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="license-number">駕駛執照號碼</label>
+                        <input type="text" id="license-number" name="license-number" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">密碼</label>
+                        <input type="password" id="password" name="password" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="confirm-password">確認密碼</label>
+                        <input type="password" id="confirm-password" name="confirm-password" required>
+                    </div>
+                    <button type="submit" class="submit-btn">立即註冊</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <p class="copyright">&copy; 2025 PHDEV CallnMoveX. All rights reserved.</p>
+            <p><a href="terms.html" style="color: #eee; text-decoration: underline;">條款及細則</a></p>
+        </div>
+    </footer>
+
+    <script>
+        // 漢堡選單切換
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+
+        hamburger.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            hamburger.classList.toggle('active');
+        });
+
+        // 關閉選單當點擊外部區域
+        document.addEventListener('click', (e) => {
+            if (!navMenu.contains(e.target) && !hamburger.contains(e.target)) {
+                navMenu.classList.remove('active');
+                hamburger.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+
+</html>
