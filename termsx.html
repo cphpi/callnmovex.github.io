@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="zh-hk">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Callnmovex - 智能貨運平台</title>
+    <meta name="description" content="智能貨運匹配平台，即時追蹤安全高效">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #00FF88;
+            --dark: #0A0A0A;
+            --gray: #1A1A1A;
+            --container-padding: 1.5rem;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background: var(--dark);
+            color: white;
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* 頁首改進 */
+        header {
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 var(--container-padding);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            z-index: 1001;
+        }
+
+        .logo img {
+            height: 45px;
+            width: auto;
+        }
+
+        .logo-text {
+            font-weight: 700;
+            font-size: 1.8rem;
+            color: white; /* 改為純白色 */
+            letter-spacing: -0.5px;
+            text-transform: uppercase; /* 保持大寫 */
+            position: relative;
+            padding: 0.3rem 0;
+        }
+
+        .logo-text::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--primary); /* 底部保留裝飾線 */
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover .logo-text::after {
+            transform: scaleX(1); /* hover時顯示下劃線動畫 */
+        }
+
+        @media (max-width: 480px) {
+            .logo-text {
+                font-size: 1.5rem;
+            }
+        }
+
+        /* 導航菜單改進 */
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: 0.3s;
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-link i {
+            font-size: 0.9em;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: 0.3s;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* 按鈕樣式 */
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: 0.3s;
+            text-decoration: none;
+        }
+
+        .btn.primary {
+            background: var(--primary);
+            color: var(--dark);
+        }
+
+        .btn.outline {
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+
+        /* 漢堡選單 */
+        .hamburger {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        /* 英雄區改進 */
+        #hero {
+            padding: 160px 0 80px;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid var(--gray);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--container-padding);
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero-content h1 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .highlight {
+            color: var(--primary);
+        }
+
+        .download-badges {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .download-badges img {
+            height: 45px;
+            width: auto;
+        }
+
+        .hero-image {
+            position: relative;
+            text-align: center;
+        }
+
+        .hero-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        /* 功能區改進 */
+        #features {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-item {
+            padding: 2rem;
+            background: var(--gray);
+            border-radius: 16px;
+            text-align: center;
+            transition: 0.3s;
+        }
+
+        .feature-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            width: 70px;
+            height: 70px;
+            background: var(--dark);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            color: var(--primary);
+            margin: 0 auto 1.5rem;
+            transition: 0.3s;
+        }
+
+        /* 步驟流程改進 */
+        .steps-container {
+            padding: 80px 0;
+            position: relative;
+        }
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            position: relative;
+        }
+
+        .step-item {
+            text-align: center;
+            padding: 2rem;
+            background: var(--gray);
+            border-radius: 16px;
+            position: relative;
+        }
+
+        .step-number {
+            width: 50px;
+            height: 50px;
+            background: var(--primary);
+            color: var(--dark);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            margin: 0 auto 1rem;
+        }
+
+        .step-line {
+            position: absolute;
+            height: 3px;
+            background: var(--gray);
+            width: 70%;
+            top: 50%;
+            left: 15%;
+            transform: translateY(-50%);
+        }
+
+        /* 響應式設計 */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+
+            .nav-menu {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 80%;
+                max-width: 300px;
+                height: 100vh;
+                background: var(--dark);
+                flex-direction: column;
+                padding: 6rem 2rem 2rem;
+                gap: 1.5rem;
+                transition: 0.3s;
+            }
+
+            .nav-menu.active {
+                right: 0;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                width: 100%;
+                gap: 1rem;
+                margin-top: 1rem;
+            }
+
+            .hero-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 3rem;
+            }
+
+            .download-badges {
+                justify-content: center;
+            }
+
+            .steps {
+                grid-template-columns: 1fr;
+                gap: 4rem;
+            }
+
+            .step-line {
+                display: none;
+            }
+        }
+
+        @media (max-width: 480px) {
+            :root {
+                --container-padding: 1rem;
+            }
+
+            .btn {
+                width: 100%;
+                text-align: center;
+            }
+
+            .hero-content h1 {
+                font-size: 2.2rem;
+            }
+        }
+
+        /* Footer 樣式 */
+        .site-footer {
+            background: var(--gray);
+            color: #eee;
+            padding: 2rem 0;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        .site-footer .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--container-padding);
+        }
+
+        .site-footer .copyright {
+            margin-bottom: 0;
+        }
+
+        /* 條款內容樣式 */
+        #terms-and-conditions {
+            padding: 90px 0 40px; /* 調整頂部 padding 以避開固定 header */
+        }
+
+        #terms-and-conditions h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        #terms-and-conditions h3 {
+            font-size: 1.5rem;
+            margin-top: 1.5rem;
+            margin-bottom: 0.8rem;
+        }
+
+        #terms-and-conditions p {
+            margin-bottom: 1rem;
+        }
+
+        #terms-and-conditions ul {
+            list-style-type: disc;
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        #terms-and-conditions ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        #terms-and-conditions dl {
+            margin-bottom: 1rem;
+        }
+
+        #terms-and-conditions dt {
+            font-weight: bold;
+            margin-top: 0.5rem;
+        }
+
+        #terms-and-conditions dd {
+            margin-left: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav class="nav-container">
+            <div class="logo">
+                <span class="logo-text">CallnMoveX</span>
+            </div>
+            <button class="hamburger"><i class="fas fa-bars"></i></button>
+            <div class="nav-menu">
+                <a href="#features" class="nav-link"><i class="fas fa-star"></i> 特色功能</a>
+                <a href="#how-it-works" class="nav-link"><i class="fas fa-play-circle"></i> 使用流程</a>
+                <div class="cta-buttons">
+                    <a href="#" class="btn primary">司機註冊</a>
+                    <a href="#" class="btn outline">用戶登入</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section id="terms-and-conditions" class="py-5">
+            <div class="container">
+                <h6 class="text-muted">生效日期： 2025-4</h6>
+
+                <h2 class="mb-4">條款及細則</h2>
+
+                <section class="mt-4">
+                    <h3>1. 前言</h3>
+                    <p>本條款（定義見下文）適用於您使用「callnmovex」平台（下稱「本平台」）及透過本平台獲取的所有服務（下稱「有關服務」）。</p>
+                    <p>本平台由 callnmovex 及其關聯公司、合作夥伴（統稱「我們」或「本公司」）營運。</p>
+                    <p><strong>使用即代表同意：</strong></p>
+                    <ul>
+                        <li>您已達法定年齡（或經父母/監護人同意），並同意受本條款及隱私政策約束。</li>
+                        <li>若不同意，請勿使用本平台並刪除相關應用程式。</li>
+                    </ul>
+                </section>
+
+                <section class="mt-4">
+                    <h3>2. 定義與解釋</h3>
+                    <dl>
+                        <dt>「帳戶」：</dt>
+                        <dd>用戶註冊的專屬帳號，用於使用本平台服務。</dd>
+                        <dt>「司機」：</dt>
+                        <dd>透過本平台提供貨運服務之個人或公司。</dd>
+                        <dt>「客戶」：</dt>
+                        <dd>透過本平台要求或接受服務之用戶（「您」）。</dd>
+                        <dt>「押金」：</dt>
+                        <dd>依第4(b)條要求存入的保證金。</dd>
+                        <dt>「最高責任限額」：</dt>
+                        <dd>200美元（或等值貨幣）。</dd>
+                        <dt>「有關法律」：</dt>
+                        <dd>您所在地區之適用法律。</dd>
+                        <dt>其他定義：</dt>
+                        <dd>參照條款內文及業務需求調整。</dd>
+                    </dl>
+                </section>
+
+                <section class="mt-4">
+                    <h3>3. 平台使用許可</h3>
+                    <p><strong>有限授權：</strong> 您可下載本平台應用程式並用於個人非商業用途。</p>
+                    <p><strong>禁止行為：</strong></p>
+                    <ul>
+                        <li>逆向工程、未授權轉售、干擾平台運作。</li>
+                        <li>濫用自動程式（如爬蟲、機器人）。</li>
+                    </ul>
+                </section>
+
+                <section class="mt-4">
+                    <h3>4. 服務說明與用戶義務</h3>
+                    <p><strong>平台角色：</strong></p>
+                    <p>本公司為技術中介，提供客戶與司機匹配服務，非運輸合約當事方。</p>
+                    <p>服務爭議需由客戶與司機直接解決。</p>
+                    <p><strong>用戶責任：</strong></p>
+                    <ul>
+                        <li>確保帳戶安全，禁止共享密碼。</li>
+                        <li>提供真實資料並遵守所有法律（如貨物合法性、禁運品規定）。</li>
+                        <li>不得損害司機車輛或進行騷擾行為。</li>
+                        <li>若違反條款，本公司得暫停或終止帳戶。</li>
+                    </ul>
+                </section>
+
+                <section class="mt-4">
+                    <h3>5. 費用與支付</h3>
+                    <p><strong>收費模式：</strong></p>
+                    <ul>
+                        <li>基本使用免費，但保留收取交易手續費之權利。</li>
+                        <li>司機報價依平台公告或即時動態定價。</li>
+                    </ul>
+                    <p><strong>支付方式：</strong></p>
+                    <ul>
+                        <li>現金：直接與司機結算。</li>
+                        <li>非現金：信用卡、電子錢包（本公司代收後轉付司機）。</li>
+                        <li>遞延結算：限時繳費，逾期將扣押金或收取滯納金。</li>
+                    </ul>
+                    <p><strong>押金機制：</strong></p>
+                    <p>依要求存入押金以確保付款義務，終止帳戶後扣除欠款退還餘額。</p>
+                </section>
+
+                <section class="mt-4">
+                    <h3>6. 免責聲明與責任限制</h3>
+                    <p>服務「現狀」提供：不保證平台無錯誤、接單成功率或司機準時性。</p>
+                    <p><strong>責任範圍：</strong></p>
+                    <ul>
+                        <li>不對貨物損壞、遺失（除非書面約定）或第三方連結內容負責。</li>
+                        <li>總賠償責任不超過「<strong>最高責任限額</strong>」。</li>
+                    </ul>
+                </section>
+
+                <section class="mt-4">
+                    <h3>7. 隱私與資料使用</h3>
+                    <p>數據處理依隱私政策，涵蓋資料收集、使用及共享範圍。</p>
+                    <p>您同意本公司為服務目的與司機共享必要資訊（如聯絡方式、貨物細節）。</p>
+                </section>
+
+                <section class="mt-4">
+                    <h3>8. 條款修改與終止</h3>
+                    <p>本公司保留修改條款、服務內容或終止平台之權利，修改後繼續使用視為同意。</p>
+                    <p>用戶可隨時終止帳戶，但已支付費用不予退還（法律另有規定除外）。</p>
+                </section>
+
+                <section class="mt-4">
+                    <h3>9. 管轄法律與爭議解決</h3>
+                    <p>受 您所在地區法律 管轄（如香港、新加坡等，需明確填入）。</p>
+                    <p>爭議優先協商，未果則提交 [指定仲裁機構或法院] 解決。</p>
+                </section>
+
+                <section class="mt-4">
+                    <h3>10. 其他條款</h3>
+                    <p>完整協議：書面協議優先於本條款。</p>
+                    <p>可分性：部分條款無效不影響其他條款效力。</p>
+                    <p>語言：以英文版本為準（若提供多語言）。</p>
+                </section>
+
+                <section class="mt-4">
+                    <h3>附錄：地區特定條款</h3>
+                    <h4>A. 英國</h4>
+                    <p><strong>禁運品清單：</strong> 包括爆炸物、毒品、武器等（依英國法例調整）。</p>
+                    <p><strong>代購服務：</strong></p>
+                    <ul>
+                        <li>司機代購物品總額限 GBP 100 以下。</li>
+                        <li>客戶須確保商品合法性，爭議由客戶與商戶自行處理。</li>
+                    </ul>
+                </section>
+
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <p class="copyright">&copy; 2025 PHDEV CallnMoveX. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // 漢堡選單切換
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+
+        hamburger.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            hamburger.classList.toggle('active');
+        });
+
+        // 關閉選單當點擊外部區域
+        document.addEventListener('click', (e) => {
+            if (!navMenu.contains(e.target) && !hamburger.contains(e.target)) {
+                navMenu.classList.remove('active');
+                hamburger.classList.remove('active');
+            }
+        });
+
+        // 平滑滾動
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
