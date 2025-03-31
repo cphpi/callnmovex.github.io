@@ -3,135 +3,253 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>服務條款</title>
+    <title data-translate-id="terms_of_service">服務條款</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .language-button {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+    </style>
 </head>
 <body>
+    <button id="language-toggle" class="language-button btn btn-sm btn-outline-secondary">English</button>
+
     <div class="container my-5">
-        <h6 class="text-muted">生效日期： 2025-4</h6>
+        <h6 class="text-muted" data-translate-id="effective_date">生效日期： 2025-4</h6>
 
         <section class="mt-4">
-            <h2>1. 前言</h2>
-            <p>本條款（定義見下文）適用於您使用「callnmovex」平台（下稱「本平台」）及透過本平台獲取的所有服務（下稱「有關服務」）。</p>
-            <p>本平台由 callnmovex 及其關聯公司、合作夥伴（統稱「我們」或「本公司」）營運。</p>
-            <p><strong>使用即代表同意：</strong></p>
-            <ul>
+            <h2 data-translate-id="preface">1. 前言</h2>
+            <p data-translate-id="preface_p1">本條款（定義見下文）適用於您使用「callnmovex」平台（下稱「本平台」）及透過本平台獲取的所有服務（下稱「有關服務」）。</p>
+            <p data-translate-id="preface_p2">本平台由 callnmovex 及其關聯公司、合作夥伴（統稱「我們」或「本公司」）營運。</p>
+            <p data-translate-id="preface_p3"><strong>使用即代表同意：</strong></p>
+            <ul data-translate-id="preface_ul">
                 <li>您已達法定年齡（或經父母/監護人同意），並同意受本條款及隱私政策約束。</li>
                 <li>若不同意，請勿使用本平台並刪除相關應用程式。</li>
             </ul>
         </section>
 
         <section class="mt-4">
-            <h2>2. 定義與解釋</h2>
-            <dl>
-                <dt>「帳戶」：</dt>
-                <dd>用戶註冊的專屬帳號，用於使用本平台服務。</dd>
-                <dt>「司機」：</dt>
-                <dd>透過本平台提供貨運服務之個人或公司。</dd>
-                <dt>「客戶」：</dt>
-                <dd>透過本平台要求或接受服務之用戶（「您」）。</dd>
-                <dt>「押金」：</dt>
-                <dd>依第4(b)條要求存入的保證金。</dd>
-                <dt>「最高責任限額」：</dt>
-                <dd>200美元（或等值貨幣）。</dd>
-                <dt>「有關法律」：</dt>
-                <dd>您所在地區之適用法律。</dd>
-                <dt>其他定義：</dt>
-                <dd>參照條款內文及業務需求調整。</dd>
+            <h2 data-translate-id="definitions">2. 定義與解釋</h2>
+            <dl data-translate-id="definitions_dl">
+                <dt data-translate-id="account">「帳戶」：</dt>
+                <dd data-translate-id="account_desc">用戶註冊的專屬帳號，用於使用本平台服務。</dd>
+                <dt data-translate-id="driver">「司機」：</dt>
+                <dd data-translate-id="driver_desc">透過本平台提供貨運服務之個人或公司。</dd>
+                <dt data-translate-id="customer">「客戶」：</dt>
+                <dd data-translate-id="customer_desc">透過本平台要求或接受服務之用戶（「您」）。</dd>
+                <dt data-translate-id="deposit">「押金」：</dt>
+                <dd data-translate-id="deposit_desc">依第4(b)條要求存入的保證金。</dd>
+                <dt data-translate-id="max_liability">「最高責任限額」：</dt>
+                <dd data-translate-id="max_liability_desc">200美元（或等值貨幣）。</dd>
+                <dt data-translate-id="relevant_laws">「有關法律」：</dt>
+                <dd data-translate-id="relevant_laws_desc">您所在地區之適用法律。</dd>
+                <dt data-translate-id="other_definitions">其他定義：</dt>
+                <dd data-translate-id="other_definitions_desc">參照條款內文及業務需求調整。</dd>
             </dl>
         </section>
 
         <section class="mt-4">
-            <h2>3. 平台使用許可</h2>
-            <p><strong>有限授權：</strong> 您可下載本平台應用程式並用於個人非商業用途。</p>
-            <p><strong>禁止行為：</strong></p>
-            <ul>
-                <li>逆向工程、未授權轉售、干擾平台運作。</li>
-                <li>濫用自動程式（如爬蟲、機器人）。</li>
+            <h2 data-translate-id="platform_license">3. 平台使用許可</h2>
+            <p data-translate-id="limited_license"><strong>有限授權：</strong> 您可下載本平台應用程式並用於個人非商業用途。</p>
+            <p data-translate-id="prohibited_conduct"><strong>禁止行為：</strong></p>
+            <ul data-translate-id="prohibited_conduct_ul">
+                <li data-translate-id="prohibited_conduct_li1">逆向工程、未授權轉售、干擾平台運作。</li>
+                <li data-translate-id="prohibited_conduct_li2">濫用自動程式（如爬蟲、機器人）。</li>
             </ul>
         </section>
 
         <section class="mt-4">
-            <h2>4. 服務說明與用戶義務</h2>
-            <p><strong>平台角色：</strong></p>
-            <p>本公司為技術中介，提供客戶與司機匹配服務，非運輸合約當事方。</p>
-            <p>服務爭議需由客戶與司機直接解決。</p>
-            <p><strong>用戶責任：</strong></p>
-            <ul>
-                <li>確保帳戶安全，禁止共享密碼。</li>
-                <li>提供真實資料並遵守所有法律（如貨物合法性、禁運品規定）。</li>
-                <li>不得損害司機車輛或進行騷擾行為。</li>
-                <li>若違反條款，本公司得暫停或終止帳戶。</li>
+            <h2 data-translate-id="service_description">4. 服務說明與用戶義務</h2>
+            <p data-translate-id="platform_role"><strong>平台角色：</strong></p>
+            <p data-translate-id="platform_role_p1">本公司為技術中介，提供客戶與司機匹配服務，非運輸合約當事方。</p>
+            <p data-translate-id="platform_role_p2">服務爭議需由客戶與司機直接解決。</p>
+            <p data-translate-id="user_responsibility"><strong>用戶責任：</strong></p>
+            <ul data-translate-id="user_responsibility_ul">
+                <li data-translate-id="user_responsibility_li1">確保帳戶安全，禁止共享密碼。</li>
+                <li data-translate-id="user_responsibility_li2">提供真實資料並遵守所有法律（如貨物合法性、禁運品規定）。</li>
+                <li data-translate-id="user_responsibility_li3">不得損害司機車輛或進行騷擾行為。</li>
+                <li data-translate-id="user_responsibility_li4">若違反條款，本公司得暫停或終止帳戶。</li>
             </ul>
         </section>
 
         <section class="mt-4">
-            <h2>5. 費用與支付</h2>
-            <p><strong>收費模式：</strong></p>
-            <ul>
-                <li>基本使用免費，但保留收取交易手續費之權利。</li>
-                <li>司機報價依平台公告或即時動態定價。</li>
+            <h2 data-translate-id="fees_and_payment">5. 費用與支付</h2>
+            <p data-translate-id="charging_model"><strong>收費模式：</strong></p>
+            <ul data-translate-id="charging_model_ul">
+                <li data-translate-id="charging_model_li1">基本使用免費，但保留收取交易手續費之權利。</li>
+                <li data-translate-id="charging_model_li2">司機報價依平台公告或即時動態定價。</li>
             </ul>
-            <p><strong>支付方式：</strong></p>
-            <ul>
-                <li>現金：直接與司機結算。</li>
-                <li>非現金：信用卡、電子錢包（本公司代收後轉付司機）。</li>
-                <li>遞延結算：限時繳費，逾期將扣押金或收取滯納金。</li>
+            <p data-translate-id="payment_methods"><strong>支付方式：</strong></p>
+            <ul data-translate-id="payment_methods_ul">
+                <li data-translate-id="payment_methods_li1">現金：直接與司機結算。</li>
+                <li data-translate-id="payment_methods_li2">非現金：信用卡、電子錢包（本公司代收後轉付司機）。</li>
+                <li data-translate-id="payment_methods_li3">遞延結算：限時繳費，逾期將扣押金或收取滯納金。</li>
             </ul>
-            <p><strong>押金機制：</strong></p>
-            <p>依要求存入押金以確保付款義務，終止帳戶後扣除欠款退還餘額。</p>
+            <p data-translate-id="deposit_mechanism"><strong>押金機制：</strong></p>
+            <p data-translate-id="deposit_mechanism_p">依要求存入押金以確保付款義務，終止帳戶後扣除欠款退還餘額。</p>
         </section>
 
         <section class="mt-4">
-            <h2>6. 免責聲明與責任限制</h2>
-            <p>服務「現狀」提供：不保證平台無錯誤、接單成功率或司機準時性。</p>
-            <p><strong>責任範圍：</strong></p>
-            <ul>
-                <li>不對貨物損壞、遺失（除非書面約定）或第三方連結內容負責。</li>
-                <li>總賠償責任不超過「<strong>最高責任限額</strong>」。</li>
+            <h2 data-translate-id="disclaimer_and_limitation">6. 免責聲明與責任限制</h2>
+            <p data-translate-id="service_as_is">服務「現狀」提供：不保證平台無錯誤、接單成功率或司機準時性。</p>
+            <p data-translate-id="scope_of_responsibility"><strong>責任範圍：</strong></p>
+            <ul data-translate-id="scope_of_responsibility_ul">
+                <li data-translate-id="scope_of_responsibility_li1">不對貨物損壞、遺失（除非書面約定）或第三方連結內容負責。</li>
+                <li data-translate-id="scope_of_responsibility_li2">總賠償責任不超過「<strong>最高責任限額</strong>」。</li>
             </ul>
         </section>
 
         <section class="mt-4">
-            <h2>7. 隱私與資料使用</h2>
-            <p>數據處理依隱私政策，涵蓋資料收集、使用及共享範圍。</p>
-            <p>您同意本公司為服務目的與司機共享必要資訊（如聯絡方式、貨物細節）。</p>
+            <h2 data-translate-id="privacy_and_data_usage">7. 隱私與資料使用</h2>
+            <p data-translate-id="data_processing">數據處理依隱私政策，涵蓋資料收集、使用及共享範圍。</p>
+            <p data-translate-id="data_sharing_consent">您同意本公司為服務目的與司機共享必要資訊（如聯絡方式、貨物細節）。</p>
         </section>
 
         <section class="mt-4">
-            <h2>8. 條款修改與終止</h2>
-            <p>本公司保留修改條款、服務內容或終止平台之權利，修改後繼續使用視為同意。</p>
-            <p>用戶可隨時終止帳戶，但已支付費用不予退還（法律另有規定除外）。</p>
+            <h2 data-translate-id="terms_modification_termination">8. 條款修改與終止</h2>
+            <p data-translate-id="terms_modification">本公司保留修改條款、服務內容或終止平台之權利，修改後繼續使用視為同意。</p>
+            <p data-translate-id="account_termination">用戶可隨時終止帳戶，但已支付費用不予退還（法律另有規定除外）。</p>
         </section>
 
         <section class="mt-4">
-            <h2>9. 管轄法律與爭議解決</h2>
-            <p>受 您所在地區法律 管轄（如香港、新加坡等，需明確填入）。</p>
-            <p>爭議優先協商，未果則提交 [指定仲裁機構或法院] 解決。</p>
+            <h2 data-translate-id="governing_law_dispute_resolution">9. 管轄法律與爭議解決</h2>
+            <p data-translate-id="governing_law">受 您所在地區法律 管轄（如香港、新加坡等，需明確填入）。</p>
+            <p data-translate-id="dispute_resolution">爭議優先協商，未果則提交 [指定仲裁機構或法院] 解決。</p>
         </section>
 
         <section class="mt-4">
-            <h2>10. 其他條款</h2>
-            <p>完整協議：書面協議優先於本條款。</p>
-            <p>可分性：部分條款無效不影響其他條款效力。</p>
-            <p>語言：以英文版本為準（若提供多語言）。</p>
+            <h2 data-translate-id="other_terms">10. 其他條款</h2>
+            <p data-translate-id="entire_agreement">完整協議：書面協議優先於本條款。</p>
+            <p data-translate-id="severability">可分性：部分條款無效不影響其他條款效力。</p>
+            <p data-translate-id="language">語言：以英文版本為準（若提供多語言）。</p>
         </section>
 
         <section class="mt-4">
-            <h2>附錄：地區特定條款</h2>
-            <h3>A. 英國</h3>
-            <p><strong>禁運品清單：</strong> 包括爆炸物、毒品、武器等（依英國法例調整）。</p>
-            <p><strong>代購服務：</strong></p>
-            <ul>
-                <li>司機代購物品總額限 GBP 100 以下。</li>
-                <li>客戶須確保商品合法性，爭議由客戶與商戶自行處理。</li>
+            <h2 data-translate-id="appendix_regional_terms">附錄：地區特定條款</h2>
+            <h3 data-translate-id="uk">A. 英國</h3>
+            <p data-translate-id="uk_prohibited_items"><strong>禁運品清單：</strong> 包括爆炸物、毒品、武器等（依英國法例調整）。</p>
+            <h3 data-translate-id="uk_purchase_service">代購服務：</h3>
+            <ul data-translate-id="uk_purchase_service_ul">
+                <li data-translate-id="uk_purchase_service_li1">司機代購物品總額限 GBP 100 以下。</li>
+                <li data-translate-id="uk_purchase_service_li2">客戶須確保商品合法性，爭議由客戶與商戶自行處理。</li>
             </ul>
         </section>
 
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        const translations = {
+            "terms_of_service": { "zh-Hant": "服務條款", "en": "Terms of Service" },
+            "effective_date": { "zh-Hant": "生效日期： 2025-4", "en": "Effective Date: 2025-4" },
+            "preface": { "zh-Hant": "1. 前言", "en": "1. Introduction" },
+            "preface_p1": { "zh-Hant": "本條款（定義見下文）適用於您使用「callnmovex」平台（下稱「本平台」）及透過本平台獲取的所有服務（下稱「有關服務」）。", "en": "These terms and conditions (as defined below) apply to your use of the 'callnmovex' platform (hereinafter referred to as the 'Platform') and all services obtained through the Platform (hereinafter referred to as the 'Services')." },
+            "preface_p2": { "zh-Hant": "本平台由 callnmovex 及其關聯公司、合作夥伴（統稱「我們」或「本公司」）營運。", "en": "The Platform is operated by callnmovex and its affiliates and partners (collectively, 'we' or 'the Company')." },
+            "preface_p3": { "zh-Hant": "<strong>使用即代表同意：</strong>", "en": "<strong>By using, you agree to:</strong>" },
+            "preface_ul": { "zh-Hant": "", "en": "" },
+            "definitions": { "zh-Hant": "2. 定義與解釋", "en": "2. Definitions and Interpretation" },
+            "definitions_dl": { "zh-Hant": "", "en": "" },
+            "account": { "zh-Hant": "「帳戶」：", "en": "'Account':" },
+            "account_desc": { "zh-Hant": "用戶註冊的專屬帳號，用於使用本平台服務。", "en": "The exclusive account registered by the user for using the services of this Platform." },
+            "driver": { "zh-Hant": "「司機」：", "en": "'Driver':" },
+            "driver_desc": { "zh-Hant": "透過本平台提供貨運服務之個人或公司。", "en": "An individual or company providing freight services through this Platform." },
+            "customer": { "zh-Hant": "「客戶」：", "en": "'Customer':" },
+            "customer_desc": { "zh-Hant": "透過本平台要求或接受服務之用戶（「您」）。", "en": "The user ('you') who requests or receives services through this Platform." },
+            "deposit": { "zh-Hant": "「押金」：", "en": "'Deposit':" },
+            "deposit_desc": { "zh-Hant": "依第4(b)條要求存入的保證金。", "en": "The security deposit required to be deposited in accordance with Clause 4(b)." },
+            "max_liability": { "zh-Hant": "「最高責任限額」：", "en": "'Maximum Liability Limit':" },
+            "max_liability_desc": { "zh-Hant": "200美元（或等值貨幣）。", "en": "USD 200 (or equivalent currency)." },
+            "relevant_laws": { "zh-Hant": "「有關法律」：", "en": "'Relevant Laws':" },
+            "relevant_laws_desc": { "zh-Hant": "您所在地區之適用法律。", "en": "The applicable laws in your region." },
+            "other_definitions": { "zh-Hant": "其他定義：", "en": "Other definitions:" },
+            "other_definitions_desc": { "zh-Hant": "參照條款內文及業務需求調整。", "en": "Refer to the text of the terms and conditions and adjust according to business needs." },
+            "platform_license": { "zh-Hant": "3. 平台使用許可", "en": "3. Platform Usage License" },
+            "limited_license": { "zh-Hant": "<strong>有限授權：</strong> 您可下載本平台應用程式並用於個人非商業用途。", "en": "<strong>Limited License:</strong> You may download the Platform application and use it for personal, non-commercial purposes." },
+            "prohibited_conduct": { "zh-Hant": "<strong>禁止行為：</strong>", "en": "<strong>Prohibited Conduct:</strong>" },
+            "prohibited_conduct_ul": { "zh-Hant": "", "en": "" },
+            "prohibited_conduct_li1": { "zh-Hant": "逆向工程、未授權轉售、干擾平台運作。", "en": "Reverse engineering, unauthorized resale, interference with platform operation." },
+            "prohibited_conduct_li2": { "zh-Hant": "濫用自動程式（如爬蟲、機器人）。", "en": "Abuse of automated programs (such as crawlers, robots)." },
+            "service_description": { "zh-Hant": "4. 服務說明與用戶義務", "en": "4. Service Description and User Obligations" },
+            "platform_role": { "zh-Hant": "<strong>平台角色：</strong>", "en": "<strong>Platform Role:</strong>" },
+            "platform_role_p1": { "zh-Hant": "本公司為技術中介，提供客戶與司機匹配服務，非運輸合約當事方。", "en": "The Company acts as a technical intermediary, providing matching services between customers and drivers, and is not a party to the transportation contract." },
+            "platform_role_p2": { "zh-Hant": "服務爭議需由客戶與司機直接解決。", "en": "Service disputes need to be resolved directly between the customer and the driver." },
+            "user_responsibility": { "zh-Hant": "<strong>用戶責任：</strong>", "en": "<strong>User Responsibility:</strong>" },
+            "user_responsibility_ul": { "zh-Hant": "", "en": "" },
+            "user_responsibility_li1": { "zh-Hant": "確保帳戶安全，禁止共享密碼。", "en": "Ensure account security and prohibit password sharing." },
+            "user_responsibility_li2": { "zh-Hant": "提供真實資料並遵守所有法律（如貨物合法性、禁運品規定）。", "en": "Provide accurate information and comply with all laws (such as the legality of goods and regulations on prohibited items)." },
+            "user_responsibility_li3": { "zh-Hant": "不得損害司機車輛或進行騷擾行為。", "en": "Do not damage the driver's vehicle or engage in harassment." },
+            "user_responsibility_li4": { "zh-Hant": "若違反條款，本公司得暫停或終止帳戶。", "en": "If the terms are violated, the Company may suspend or terminate the account." },
+            "fees_and_payment": { "zh-Hant": "5. 費用與支付", "en": "5. Fees and Payment" },
+            "charging_model": { "zh-Hant": "<strong>收費模式：</strong>", "en": "<strong>Charging Model:</strong>" },
+            "charging_model_ul": { "zh-Hant": "", "en": "" },
+            "charging_model_li1": { "zh-Hant": "基本使用免費，但保留收取交易手續費之權利。", "en": "Basic use is free, but the right to charge transaction fees is reserved." },
+            "charging_model_li2": { "zh-Hant": "司機報價依平台公告或即時動態定價。", "en": "Driver quotations are based on platform announcements or real-time dynamic pricing." },
+            "payment_methods": { "zh-Hant": "<strong>支付方式：</strong>", "en": "<strong>Payment Methods:</strong>" },
+            "payment_methods_ul": { "zh-Hant": "", "en": "" },
+            "payment_methods_li1": { "zh-Hant": "現金：直接與司機結算。", "en": "Cash: Settle directly with the driver." },
+            "payment_methods_li2": { "zh-Hant": "非現金：信用卡、電子錢包（本公司代收後轉付司機）。", "en": "Non-cash: Credit card, e-wallet (the Company collects and then pays the driver)." },
+            "payment_methods_li3": { "zh-Hant": "遞延結算：限時繳費，逾期將扣押金或收取滯納金。", "en": "Deferred settlement: Payment within a limited time; overdue payments will result in deduction from the deposit or late fees." },
+            "deposit_mechanism": { "zh-Hant": "<strong>押金機制：</strong>", "en": "<strong>Deposit Mechanism:</strong>" },
+            "deposit_mechanism_p": { "zh-Hant": "依要求存入押金以確保付款義務，終止帳戶後扣除欠款退還餘額。", "en": "Deposit is required to ensure payment obligations; the remaining balance will be refunded after deducting outstanding payments upon account termination." },
+            "disclaimer_and_limitation": { "zh-Hant": "6. 免責聲明與責任限制", "en": "6. Disclaimer and Limitation of Liability" },
+            "service_as_is": { "zh-Hant": "服務「現狀」提供：不保證平台無錯誤、接單成功率或司機準時性。", "en": "Services are provided on an 'as is' basis: no guarantee is made that the Platform is error-free, that booking success rates are high, or that drivers will be on time." },
+            "scope_of_responsibility": { "zh-Hant": "<strong>責任範圍：</strong>", "en": "<strong>Scope of Responsibility:</strong>" },
+            "scope_of_responsibility_ul": { "zh-Hant": "", "en": "" },
+            "scope_of_responsibility_li1": { "zh-Hant": "不對貨物損壞、遺失（除非書面約定）或第三方連結內容負責。", "en": "Not responsible for damage or loss of goods (unless agreed in writing) or the content of third-party links." },
+            "scope_of_responsibility_li2": { "zh-Hant": "總賠償責任不超過「<strong>最高責任限額</strong>」。", "en": "The total compensation liability shall not exceed the '<strong>Maximum Liability Limit</strong>'." },
+            "privacy_and_data_usage": { "zh-Hant": "7. 隱私與資料使用", "en": "7. Privacy and Data Usage" },
+            "data_processing": { "zh-Hant": "數據處理依隱私政策，涵蓋資料收集、使用及共享範圍。", "en": "Data processing is in accordance with the privacy policy, covering the scope of data collection, use, and sharing." },
+            "data_sharing_consent": { "zh-Hant": "您同意本公司為服務目的與司機共享必要資訊（如聯絡方式、貨物細節）。", "en": "You agree that the Company may share necessary information (such as contact details and cargo details) with drivers for service purposes." },
+            "terms_modification_termination": { "zh-Hant": "8. 條款修改與終止", "en": "8. Terms Modification and Termination" },
+            "terms_modification": { "zh-Hant": "本公司保留修改條款、服務內容或終止平台之權利，修改後繼續使用視為同意。", "en": "The Company reserves the right to modify the terms and conditions, service content, or terminate the Platform. Continued use after modification constitutes acceptance." },
+            "account_termination": { "zh-Hant": "用戶可隨時終止帳戶，但已支付費用不予退還（法律另有規定除外）。", "en": "Users can terminate their accounts at any time, but fees already paid will not be refunded (unless otherwise stipulated by law)." },
+            "governing_law_dispute_resolution": { "zh-Hant": "9. 管轄法律與爭議解決", "en": "9. Governing Law and Dispute Resolution" },
+            "governing_law": { "zh-Hant": "受 您所在地區法律 管轄（如香港、新加坡等，需明確填入）。", "en": "Governed by the laws of your region (e.g., Hong Kong, Singapore, etc., to be explicitly filled in)." },
+            "dispute_resolution": { "zh-Hant": "爭議優先協商，未果則提交 [指定仲裁機構或法院] 解決。", "en": "Disputes shall be resolved through negotiation first, and if unsuccessful, shall be submitted to [designated arbitration institution or court] for resolution." },
+            "other_terms": { "zh-Hant": "10. 其他條款", "en": "10. Other Terms" },
+            "entire_agreement": { "zh-Hant": "完整協議：書面協議優先於本條款。", "en": "Entire Agreement: The written agreement shall prevail over these terms and conditions." },
+            "severability": { "zh-Hant": "可分性：部分條款無效不影響其他條款效力。", "en": "Severability: The invalidity of some provisions shall not affect the validity of other provisions." },
+            "language": { "zh-Hant": "語言：以英文版本為準（若提供多語言）。", "en": "Language: The English version shall prevail (if multiple languages are provided)." },
+            "appendix_regional_terms": { "zh-Hant": "附錄：地區特定條款", "en": "Appendix: Regional Specific Terms" },
+            "uk": { "zh-Hant": "A. 英國", "en": "A. United Kingdom" },
+            "uk_prohibited_items": { "zh-Hant": "<strong>禁運品清單：</strong> 包括爆炸物、毒品、武器等（依英國法例調整）。", "en": "<strong>List of Prohibited Items:</strong> Includes explosives, drugs, weapons, etc. (to be adjusted according to UK law)." },
+            "uk_purchase_service": { "zh-Hant": "代購服務：", "en": "Purchase Service:" },
+            "uk_purchase_service_ul": { "zh-Hant": "", "en": "" },
+            "uk_purchase_service_li1": { "zh-Hant": "司機代購物品總額限 GBP 100 以下。", "en": "The total amount of items purchased by the driver is limited to GBP 100." },
+            "uk_purchase_service_li2": { "zh-Hant": "客戶須確保商品合法性，爭議由客戶與商戶自行處理。", "en": "Customers must ensure the legality of the goods; disputes shall be handled by the customer and the merchant themselves." }
+        };
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const languageToggle = document.getElementById('language-toggle');
+            const htmlElement = document.documentElement;
+            let currentLanguage = htmlElement.lang;
+
+            function translatePage(lang) {
+                document.querySelectorAll('[data-translate-id]').forEach(element => {
+                    const translationId = element.dataset.translateId;
+                    if (translations[translationId] && translations[translationId][lang]) {
+                        element.innerHTML = translations[translationId][lang];
+                    } else if (translations[translationId] && translations[translationId][lang] === "") {
+                        // Do nothing for empty translations
+                    } else {
+                        console.warn(`Translation not found for id: ${translationId} in language: ${lang}`);
+                    }
+                });
+                htmlElement.lang = lang;
+                currentLanguage = lang;
+                languageToggle.textContent = lang === 'zh-Hant' ? 'English' : '中文';
+            }
+
+            languageToggle.addEventListener('click', function() {
+                const newLanguage = currentLanguage === 'zh-Hant' ? 'en' : 'zh-Hant';
+                translatePage(newLanguage);
+            });
+
+            // Initial translation on page load
+            translatePage(currentLanguage);
+        });
+    </script>
 </body>
 </html>
