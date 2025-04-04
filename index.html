@@ -30,6 +30,33 @@
             overflow-x: hidden;
         }
 
+        /* Video background styles */
+        #background-video {
+            position: fixed;
+            right: 0;
+            bottom: 0;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            z-index: -1;
+        }
+
+        .video-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6); /* Optional: Add a dark overlay for better text readability */
+            z-index: 0;
+        }
+
+        .content-wrapper {
+            position: relative;
+            z-index: 1; /* Ensure your content is above the video */
+        }
+
         /* 頁首改進 */
         header {
             background: rgba(10, 10, 10, 0.95);
@@ -392,75 +419,83 @@
 </head>
 
 <body>
-    <header>
-        <nav class="nav-container">
-            <div class="logo">
-                <a href="index.html" style="text-decoration: none; color: inherit;">
-                    <span class="logo-text">CallnMoveX</span>
-                </a>
-            </div>
-            <button class="hamburger"><i class="fas fa-bars"></i></button>
-            <div class="nav-menu">
-                <a href="#features" class="nav-link"><i class="fas fa-star"></i> 特色功能</a>
-                <a href="#how-it-works" class="nav-link"><i class="fas fa-play-circle"></i> 使用流程</a>
-                <div class="cta-buttons">
-                    <a href="driver-registration.html" class="btn primary">司機註冊</a>
-                    <a href="#" class="btn outline">用戶登入</a>
+    <div class="content-wrapper">
+        <header>
+            <nav class="nav-container">
+                <div class="logo">
+                    <a href="index.html" style="text-decoration: none; color: inherit;">
+                        <span class="logo-text">CallnMoveX</span>
+                    </a>
                 </div>
-            </div>
-        </nav>
-    </header>
+                <button class="hamburger"><i class="fas fa-bars"></i></button>
+                <div class="nav-menu">
+                    <a href="#features" class="nav-link"><i class="fas fa-star"></i> 特色功能</a>
+                    <a href="#how-it-works" class="nav-link"><i class="fas fa-play-circle"></i> 使用流程</a>
+                    <div class="cta-buttons">
+                        <a href="driver-registration.html" class="btn primary">司機註冊</a>
+                        <a href="#" class="btn outline">用戶登入</a>
+                    </div>
+                </div>
+            </nav>
+        </header>
 
-    <main>
-        <section id="hero">
-            <div class="container">
-                <div class="hero-grid">
-                    <div class="hero-content">
-                        <h1>智能貨運<br><span class="highlight">在英國重新定義物流效率</span></h1>
-                        <p class="lead">透過AI匹配算法，即時連接貨主與專業司機</p>
-                        <div class="download-badges">
-                            <a href="https://apps.apple.com/gb/app/callnmovex/id6740782153"><img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Download_on_the_App_Store_RGB_blk.svg" alt="App Store"></a>
-                            <a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Google Play"></a>
+        <main>
+            <section id="hero">
+                <div class="container">
+                    <div class="hero-grid">
+                        <div class="hero-content">
+                            <h1>智能貨運<br><span class="highlight">在英國重新定義物流效率</span></h1>
+                            <p class="lead">透過AI匹配算法，即時連接貨主與專業司機</p>
+                            <div class="download-badges">
+                                <a href="https://apps.apple.com/gb/app/callnmovex/id6740782153"><img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Download_on_the_App_Store_RGB_blk.svg" alt="App Store"></a>
+                                <a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Google Play"></a>
+                            </div>
+                        </div>
+                        <div class="hero-image">
+                            <img src="https://raw.githubusercontent.com/cphpi/callnmovex.github.io/refs/heads/main/icon-512-maskable.png" alt="App介面" class="hero-app-image">
                         </div>
                     </div>
-                    <div class="hero-image">
-                        <img src="https://raw.githubusercontent.com/cphpi/callnmovex.github.io/refs/heads/main/icon-512-maskable.png" alt="App介面" class="hero-app-image">
+                </div>
+            </section>
+
+
+            <section class="steps-container" id="how-it-works">
+                <div class="container">
+                    <h2 class="section-title">簡單三步驟</h2>
+                    <div class="steps">
+                        <div class="step-item">
+                            <div class="step-number">1</div>
+                            <h4>即時報價</h4>
+                            <p>輸入需求立即取得精準報價</p>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-number">2</div>
+                            <h4>智能匹配</h4>
+                            <p>AI推薦最合適司機與車輛</p>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-number">3</div>
+                            <h4>即時追蹤</h4>
+                            <p>全程GPS定位確保準時送達</p>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
+        </main>
 
-
-        <section class="steps-container" id="how-it-works">
+        <footer class="site-footer">
             <div class="container">
-                <h2 class="section-title">簡單三步驟</h2>
-                <div class="steps">
-                    <div class="step-item">
-                        <div class="step-number">1</div>
-                        <h4>即時報價</h4>
-                        <p>輸入需求立即取得精準報價</p>
-                    </div>
-                    <div class="step-item">
-                        <div class="step-number">2</div>
-                        <h4>智能匹配</h4>
-                        <p>AI推薦最合適司機與車輛</p>
-                    </div>
-                    <div class="step-item">
-                        <div class="step-number">3</div>
-                        <h4>即時追蹤</h4>
-                        <p>全程GPS定位確保準時送達</p>
-                    </div>
-                </div>
-                </div>
-        </section>
-    </main>
+                <p class="copyright">&copy; 2025 PHDEV CallnMoveX. All rights reserved.</p>
+                <p><a href="termsx.html" style="color: #eee; text-decoration: underline;">條款及細則</a></p>
+            </div>
+        </footer>
+    </div>
 
-    <footer class="site-footer">
-        <div class="container">
-            <p class="copyright">&copy; 2025 PHDEV CallnMoveX. All rights reserved.</p>
-            <p><a href="termsx.html" style="color: #eee; text-decoration: underline;">條款及細則</a></p>
-        </div>
-    </footer>
+    <video autoplay muted loop id="background-video">
+        <source src="https://callnmovex.uk/157019-813913002.mp4" type="video/mp4">
+        Your browser does not support HTML5 video.
+    </video>
+    <div class="video-overlay"></div>
 
     <script>
         // 漢堡選單切換
