@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>資訊圖表：「八九六四」的記憶與傳承</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            background-color: #f0f4f8;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 400px;
+        }
+        @media (max-width: 768px) {
+            .chart-container {
+                height: 300px;
+            }
+        }
+        .flow-line::after {
+            content: '→';
+            font-size: 2rem;
+            line-height: 2.5rem;
+            color: #FF5A5F;
+            margin: 0 1rem;
+        }
+        .flow-line:last-child::after {
+            content: '';
+        }
+    </style>
+</head>
+<body class="bg-[#0B3954] text-gray-800">
+
+    <div class="container mx-auto p-4 md:p-8">
+        
+        <header class="text-center mb-12 text-white">
+            <h1 class="text-4xl md:text-6xl font-black mb-2 text-[#BFD7EA]">「八九六四」</h1>
+            <p class="text-xl md:text-2xl text-[#BFD7EA]">中國歷史的傷痕與全球華人的記憶傳承</p>
+            <p class="text-sm mt-4 text-gray-400">這份資訊圖表基於一份關於1989年天安門事件的深入研究報告，旨在視覺化呈現該事件的背景、過程、後果以及至今仍在持續的記憶之戰。</p>
+        </header>
+
+        <main class="space-y-8">
+
+            <section id="section1" class="bg-white rounded-xl shadow-2xl p-6 md:p-8">
+                <h2 class="text-3xl font-bold mb-4 text-[#087E8B] border-b-4 border-[#FF5A5F] pb-2">I. 不滿的種子：1989年前夕的中國</h2>
+                <p class="mb-6 text-gray-600">1989年的抗議並非憑空而起，而是十年改革開放所積累的社會經濟矛盾與政治改革停滯共同作用的結果。普遍的民怨為一場大規模運動埋下了伏筆。</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-blue-50 p-6 rounded-lg text-center">
+                        <div class="text-6xl font-black text-[#C81D25]">近30%</div>
+                        <div class="mt-2 text-lg font-bold text-[#0B3954]">惡性通貨膨脹</div>
+                        <p class="text-sm text-gray-500 mt-1">1988年官方公布的通脹率為18.5%，但民間感受遠超於此，部分城市物價上漲超過30%，引發全國性搶購潮。</p>
+                    </div>
+                    <div class="bg-blue-50 p-6 rounded-lg text-center">
+                         <div class="text-6xl font-black text-[#C81D25]">官倒</div>
+                        <div class="mt-2 text-lg font-bold text-[#0B3954]">腐敗橫行</div>
+                        <p class="text-sm text-gray-500 mt-1">官員利用雙軌制價格差異倒賣物資牟取暴利，成為民怨最集中的焦點。「反腐敗、反官倒」是運動的核心口號之一。</p>
+                    </div>
+                </div>
+                <div class="mt-8">
+                    <h3 class="text-xl font-bold mb-4 text-[#0B3954]">催化劑：胡耀邦逝世</h3>
+                    <p class="text-gray-600">1989年4月15日，被視為黨內開明派的前總書記胡耀邦逝世，成為點燃民眾情緒的導火線。最初的悼念活動迅速演變為一場要求政治改革的大規模民主運動。</p>
+                </div>
+            </section>
+
+            <section id="section2" class="bg-white rounded-xl shadow-2xl p-6 md:p-8">
+                <h2 class="text-3xl font-bold mb-4 text-[#087E8B] border-b-4 border-[#FF5A5F] pb-2">II. 民主的吶喊：運動的興起</h2>
+                <p class="mb-6 text-gray-600">從悼念到請願，從罷課到絕食，學生們的行動獲得了社會各界的廣泛支持，匯聚成一場遍及全國的民主浪潮。其訴求清晰地指向一個更開放、更公正的中國。</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <div>
+                        <h3 class="text-xl font-bold mb-4 text-[#0B3954]">學生的七項核心要求</h3>
+                        <ul class="list-disc list-inside space-y-2 text-gray-700">
+                            <li>公正評價胡耀邦功過</li>
+                            <li>為86年學運平反</li>
+                            <li>開放報禁，實現新聞自由</li>
+                            <li>增加教育經費，改善知識份子待遇</li>
+                            <li>公布「四二零慘案」真相</li>
+                            <li>反對腐敗，懲治官倒</li>
+                            <li>如實報導學生愛國民主運動</li>
+                        </ul>
+                    </div>
+                    <div class="text-center">
+                        <h3 class="text-xl font-bold mb-4 text-[#0B3954]">運動的象徵：民主女神</h3>
+                        <div class="text-8xl text-[#087E8B]">🏛️</div>
+                        <p class="mt-4 text-gray-600">5月30日，由中央美術學院等校學生創作的「民主女神」像在天安門廣場豎立，與天安門城樓上的毛澤東像遙遙相對，成為運動追求自由與民主的鮮明標誌。</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="section3" class="bg-white rounded-xl shadow-2xl p-6 md:p-8">
+                <h2 class="text-3xl font-bold mb-4 text-[#087E8B] border-b-4 border-[#FF5A5F] pb-2">III. 悲劇的發生：鎮壓與傷亡</h2>
+                <p class="mb-6 text-gray-600">在長達數週的對峙後，政府的態度趨於強硬。5月20日宣布戒嚴，最終在6月3日晚至4日凌晨，動用軍隊進行武力清場，導致了震驚中外的流血事件。關於死亡人數，至今沒有一個統一、可信的官方說法，各方估計數字差異巨大，這本身就反映了事件的敏感性與信息封鎖的嚴重程度。</p>
+                <div class="chart-container">
+                    <canvas id="deathTollChart"></canvas>
+                </div>
+                <p class="text-center text-sm text-gray-500 mt-2">不同來源對「六四事件」平民死亡人數的估計存在巨大差異</p>
+            </section>
+            
+            <section id="section4" class="bg-white rounded-xl shadow-2xl p-6 md:p-8">
+                <h2 class="text-3xl font-bold mb-4 text-[#087E8B] border-b-4 border-[#FF5A5F] pb-2">IV. 抵抗的象徵：「坦克人」</h2>
+                 <p class="mb-6 text-gray-600">6月5日，在軍隊清場後的北京長安街上，一名身份不明的男子隻身阻擋整列坦克前進。這一幕被攝影師記錄下來，成為20世紀最經典的影像之一，象徵著個人勇氣在國家暴力面前的非凡抵抗。</p>
+                <div class="bg-[#0B3954] text-white rounded-lg p-8 text-center my-6 shadow-lg">
+                    <div class="text-6xl mb-4">🧍</div>
+                    <p class="text-xl font-bold">「我們不知道他的名字，我們不知道他的命運，但我們永遠記得他以血肉之軀對抗國家機器的勇氣。」</p>
+                </div>
+                <p class="text-gray-600">「坦克人」的真實身份與下落至今成謎，中國政府對此諱莫如深，相關影像在中國大陸被嚴格審查，但在世界範圍內，他已成為反抗暴政的不朽象徵。</p>
+            </section>
+
+            <section id="section5" class="bg-white rounded-xl shadow-2xl p-6 md:p-8">
+                <h2 class="text-3xl font-bold mb-4 text-[#087E8B] border-b-4 border-[#FF5A5F] pb-2">V. 記憶的戰爭：遺忘 vs. 銘記</h2>
+                <p class="mb-6 text-gray-600">事件之後，一場無聲的戰爭打響了。一方是國家機器的強力審查與系統性遺忘工程，另一方則是海內外公民社會鍥而不捨的真相追尋與記憶保存。</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-6">
+                    <div class="border-4 border-red-200 rounded-lg p-4 bg-red-50">
+                        <h3 class="text-2xl font-bold text-center text-[#C81D25] mb-4">國家級失憶工程</h3>
+                        <ul class="space-y-3">
+                            <li class="flex items-start"><span class="text-2xl mr-3">🔒</span> <div><span class="font-bold">防火長城：</span>嚴密封鎖「64」、「8964」、「天安門屠殺」等數百個敏感詞及相關圖像。</div></li>
+                            <li class="flex items-start"><span class="text-2xl mr-3">🚫</span> <div><span class="font-bold">禁止紀念：</span>任何在中國大陸的公開紀念活動均被嚴厲禁止，相關人士會被警告、拘留甚至判刑。</div></li>
+                            <li class="flex items-start"><span class="text-2xl mr-3">🤫</span> <div><span class="font-bold">官方敘事：</span>將事件定性為「反革命暴亂」或「政治風波」，並壓制一切不同聲音。</div></li>
+                        </ul>
+                    </div>
+                    <div class="border-4 border-blue-200 rounded-lg p-4 bg-blue-50">
+                        <h3 class="text-2xl font-bold text-center text-[#087E8B] mb-4">公民的堅持：「天安門母親」</h3>
+                        <p class="mb-4 text-gray-700">由遇難者家屬組成的「天安門母親」群體，數十年如一日，在巨大的政治壓力下堅持記錄遇難者名單，並每年發表公開信，提出三項訴求：</p>
+                        <ul class="space-y-3 font-bold text-[#0B3954]">
+                           <li class="flex items-center"><span class="text-2xl mr-3">真相</span> (Truth)</li>
+                           <li class="flex items-center"><span class="text-2xl mr-3">賠償</span> (Compensation)</li>
+                           <li class="flex items-center"><span class="text-2xl mr-3">問責</span> (Accountability)</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section id="section6" class="bg-white rounded-xl shadow-2xl p-6 md:p-8">
+                <h2 class="text-3xl font-bold mb-4 text-[#087E8B] border-b-4 border-[#FF5A5F] pb-2">VI. 火種的傳遞：全球紀念浪潮</h2>
+                <p class="mb-6 text-gray-600">當記憶在中國大陸被禁絕，保存歷史的責任便落在了全球華人及國際社會的肩上。紀念的火種從香港維多利亞公園，傳遞到台灣，再到世界各地，形成了一場對抗遺忘的全球接力。</p>
+                <div class="my-8">
+                    <h3 class="text-xl font-bold text-center mb-4 text-[#0B3954]">紀念活動地理重心的變遷</h3>
+                    <div class="flex flex-col md:flex-row justify-center items-center text-center">
+                        <div class="flow-line p-4">
+                            <div class="text-5xl">🇨🇳</div>
+                            <div class="font-bold mt-2">北京 (1989)</div>
+                            <div class="text-sm text-gray-500">運動發源地</div>
+                        </div>
+                        <div class="flow-line p-4">
+                            <div class="text-5xl">🇭🇰</div>
+                            <div class="font-bold mt-2">香港 (1990-2019)</div>
+                            <div class="text-sm text-gray-500">維園燭光，良心燈塔</div>
+                        </div>
+                        <div class="flow-line p-4">
+                            <div class="text-5xl">🇹🇼🌏</div>
+                            <div class="font-bold mt-2">台灣及全球 (2020-)</div>
+                            <div class="text-sm text-gray-500">承擔記憶，捍衛價值</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-8 text-center bg-blue-50 p-6 rounded-lg">
+                    <p class="text-lg text-gray-700">近年來，全球有超過<span class="font-bold text-2xl text-[#FF5A5F]"> 10 </span>個國家、<span class="font-bold text-2xl text-[#FF5A5F]">40 </span>個城市舉辦了<span class="font-bold text-2xl text-[#FF5A5F]"> 77 </span>場相關紀念活動。這些數字證明，記憶從未熄滅。</p>
+                    <p class="text-sm text-gray-500 mt-2">（數據來源：綜合人權組織報告）</p>
+                </div>
+            </section>
+
+        </main>
+        
+        <footer class="text-center mt-12 text-gray-400 text-xs">
+            <p>此資訊圖表根據公開研究報告製作，旨在促進對歷史事件的了解。所有數據和內容均來自所引用的源報告。</p>
+            <p>視覺化設計與開發遵循「無 SVG」、「無 Mermaid JS」原則，使用 Chart.js (Canvas) 與 Tailwind CSS 構建。</p>
+        </footer>
+
+    </div>
+
+    <script>
+        const wrapLabel = (label, maxLength) => {
+            if (label.length <= maxLength) {
+                return label;
+            }
+            const words = label.split(' ');
+            const lines = [];
+            let currentLine = '';
+            words.forEach(word => {
+                if ((currentLine + word).length > maxLength) {
+                    lines.push(currentLine.trim());
+                    currentLine = '';
+                }
+                currentLine += word + ' ';
+            });
+            lines.push(currentLine.trim());
+            return lines;
+        };
+
+        const tooltipTitleCallback = (tooltipItems) => {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) {
+                return label.join(' ');
+            }
+            return label;
+        };
+        
+        const deathTollData = {
+            labels: [
+                wrapLabel('中國官方 (袁木, 6月6日)', 16),
+                wrapLabel('中國官方 (陳希同報告)', 16),
+                wrapLabel('天安門母親 (已確認)', 16),
+                wrapLabel('中國紅十字會 (傳聞)', 16),
+                wrapLabel('英國解密檔案 (2017)', 16),
+                wrapLabel('美國解密檔案 (2014)', 16)
+            ],
+            datasets: [{
+                label: '估計平民死亡人數',
+                data: [277, 200, 202, 2600, 10000, 10454],
+                backgroundColor: [
+                    '#BFD7EA',
+                    '#087E8B',
+                    '#0B3954',
+                    '#FF5A5F',
+                    '#C81D25',
+                    '#a1141a'
+                ],
+                borderColor: '#ffffff',
+                borderWidth: 2
+            }]
+        };
+
+        const deathTollChartCtx = document.getElementById('deathTollChart').getContext('2d');
+        new Chart(deathTollChartCtx, {
+            type: 'bar',
+            data: deathTollData,
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                indexAxis: 'y',
+                scales: {
+                    x: {
+                        type: 'logarithmic',
+                        title: {
+                            display: true,
+                            text: '人數 (對數座標)',
+                            color: '#333'
+                        },
+                        ticks: {
+                           color: '#333'
+                        }
+                    },
+                    y: {
+                       ticks: {
+                           color: '#333'
+                       }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    title: {
+                        display: true,
+                        text: '各方對「六四」平民死亡人數的估計',
+                        font: {
+                            size: 18,
+                            weight: 'bold'
+                        },
+                        color: '#0B3954',
+                        padding: {
+                            top: 10,
+                            bottom: 20
+                        }
+                    },
+                    tooltip: {
+                        callbacks: {
+                            title: tooltipTitleCallback
+                        }
+                    }
+                }
+            }
+        });
+
+    </script>
+</body>
+</html>
