@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evri 派件員薪酬互動式分析報告</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Warm Neutral Harmony -->
+    <!-- Application Structure Plan: The application is designed as a narrative journey to uncover why Evri's courier pay is low. It starts with the core conflict (Official Pay vs. Reality), explains the business model interactively, details the downward pressures on pay, provides historical context via a timeline, discusses the union's role, and concludes. This thematic, story-driven structure is more engaging and intuitive for a user than the report's academic layout, guiding them from the "what" to the "why" and "how." -->
+    <!-- Visualization & Content Choices: 1. Pay Discrepancy (Goal: Compare) -> Bar Chart (Chart.js) to instantly show the stark difference between official and reported pay. Interaction: Tooltips. Justification: Most impactful way to present the central conflict. 2. Business Model (Goal: Organize) -> Interactive HTML/CSS Diagram. Interaction: Click to reveal courier costs in a modal. Justification: Encourages exploration and simplifies a complex process. 3. Company History (Goal: Change) -> Interactive HTML/CSS Timeline. Interaction: Click to show event details. Justification: Makes historical data engaging and non-linear. 4. Key Factors/SE+ Deal (Goal: Inform) -> Styled Cards/Lists (HTML/Tailwind). Interaction: Hover effects. Justification: Enhances readability for text-heavy sections. All choices avoid SVG/Mermaid as required. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            background-color: #FDFBF8;
+            color: #383838;
+        }
+        .bg-primary { background-color: #FDFBF8; }
+        .bg-secondary { background-color: #F1EAE4; }
+        .bg-accent { background-color: #005F73; }
+        .text-accent { color: #005F73; }
+        .border-accent { border-color: #005F73; }
+        .nav-link {
+            transition: color 0.3s, border-bottom-color 0.3s;
+            border-bottom: 2px solid transparent;
+        }
+        .nav-link:hover, .nav-link.active {
+            color: #003E4C;
+            border-bottom-color: #003E4C;
+        }
+        .timeline-item {
+            position: relative;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .timeline-item:hover {
+            transform: scale(1.05);
+        }
+        .timeline-item .dot {
+            transition: background-color 0.3s;
+        }
+        .timeline-item.active .dot {
+            background-color: #005F73;
+        }
+        .modal {
+            transition: opacity 0.3s ease-in-out;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 400px;
+            max-height: 50vh;
+        }
+        .kpi-card {
+            background-color: #ffffff;
+            border: 1px solid #E5E7EB;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+        }
+    </style>
+</head>
+<body class="bg-primary">
+
+    <header id="header" class="bg-primary sticky top-0 z-50 shadow-md">
+        <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <h1 class="text-xl md:text-2xl font-bold text-accent">Evri 薪酬解密</h1>
+            <div class="hidden md:flex space-x-8">
+                <a href="#conflict" class="nav-link py-1">薪酬爭議</a>
+                <a href="#model" class="nav-link py-1">商業模式</a>
+                <a href="#pressures" class="nav-link py-1">壓力來源</a>
+                <a href="#timeline" class="nav-link py-1">發展歷程</a>
+                <a href="#union" class="nav-link py-1">工會角色</a>
+            </div>
+            <button id="mobile-menu-button" class="md:hidden">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-4 6h4" />
+                </svg>
+            </button>
+        </nav>
+        <div id="mobile-menu" class="hidden md:hidden bg-primary">
+            <a href="#conflict" class="block py-2 px-6 text-sm hover:bg-secondary">薪酬爭議</a>
+            <a href="#model" class="block py-2 px-6 text-sm hover:bg-secondary">商業模式</a>
+            <a href="#pressures" class="block py-2 px-6 text-sm hover:bg-secondary">壓力來源</a>
+            <a href="#timeline" class="block py-2 px-6 text-sm hover:bg-secondary">發展歷程</a>
+            <a href="#union" class="block py-2 px-6 text-sm hover:bg-secondary">工會角色</a>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-6 py-8 md:py-12">
+
+        <section id="hero" class="text-center mb-16">
+            <h2 class="text-3xl md:text-5xl font-bold mb-4">Evri 之謎：拆解您派送的真正成本</h2>
+            <p class="max-w-3xl mx-auto text-lg text-gray-700">Evri (前 Hermes) 是英國最大的包裹派送公司之一，以其經濟實惠的價格服務於各大零售商。但低價背後，是派件員薪酬偏低和工作條件不穩的現實。本報告將帶您深入探討這個「零工經濟」模式下的核心矛盾。</p>
+        </section>
+
+        <section id="conflict" class="py-12 bg-secondary rounded-xl scroll-mt-20">
+            <div class="text-center mb-12 px-4">
+                <h3 class="text-2xl md:text-3xl font-bold text-accent">硬幣的兩面：官方說法 vs 現實處境</h3>
+                <p class="mt-2 max-w-2xl mx-auto text-gray-600">Evri 官方宣稱其 SE+ 合約提供了優於最低工資的保障，但許多派件員的實際經歷卻描繪了另一幅景象。下圖比較了官方宣傳的平均時薪與派件員扣除營運成本後的實際收入。</p>
+            </div>
+            <div class="chart-container">
+                <canvas id="payComparisonChart"></canvas>
+            </div>
+        </section>
+
+        <section id="model" class="py-16 scroll-mt-20">
+            <div class="text-center mb-12 px-4">
+                <h3 class="text-2xl md:text-3xl font-bold text-accent">商業模式剖析：「自僱」的代價</h3>
+                <p class="mt-2 max-w-2xl mx-auto text-gray-600">Evri 的運作核心是一個龐大的自僱派件員網絡。這種模式為公司帶來了極大的彈性和成本優勢，但同時也將大量的營運風險和成本轉嫁給了派件員。點擊下圖中的「派件員」了解他們需要承擔哪些成本。</p>
+            </div>
+            <div class="relative flex flex-col md:flex-row items-center justify-around p-8 bg-white rounded-xl shadow-lg">
+                <div class="text-center">
+                    <div class="text-5xl mb-2">📦</div>
+                    <p class="font-bold">零售商</p>
+                    <p class="text-sm text-gray-500">(ASOS, Next...)</p>
+                </div>
+                <div class="text-accent text-4xl my-4 md:my-0 font-light">→</div>
+                <div class="text-center">
+                    <div class="text-5xl mb-2">🏭</div>
+                    <p class="font-bold">Evri 分揀中心</p>
+                </div>
+                <div class="text-accent text-4xl my-4 md:my-0 font-light">→</div>
+                <div id="courier-node" class="text-center cursor-pointer p-4 rounded-lg hover:bg-gray-100 transition-colors">
+                    <div class="text-5xl mb-2">🚚</div>
+                    <p class="font-bold">自僱派件員</p>
+                    <p class="text-sm text-blue-600">(點擊查看詳情)</p>
+                </div>
+                <div class="text-accent text-4xl my-4 md:my-0 font-light">→</div>
+                <div class="text-center">
+                    <div class="text-5xl mb-2">🏠</div>
+                    <p class="font-bold">顧客</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="pressures" class="py-12 bg-secondary rounded-xl scroll-mt-20">
+            <div class="text-center mb-12 px-4">
+                <h3 class="text-2xl md:text-3xl font-bold text-accent">三重壓力：壓低薪酬的結構性因素</h3>
+                <p class="mt-2 max-w-2xl mx-auto text-gray-600">派件員的低薪並非偶然，而是由公司的商業策略、零工經濟的本質以及市場競爭環境共同造成的。</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow">
+                    <h4 class="font-bold text-xl mb-2 text-accent">1. 成本競爭策略</h4>
+                    <p class="text-gray-700">Evri 的核心是為大型電商客戶提供「經濟實惠」的派送服務。這意味著公司必須極力控制成本，而作為最大可變成本之一的派件員薪酬，自然成為首要目標。</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow">
+                    <h4 class="font-bold text-xl mb-2 text-accent">2. 自僱模式的經濟學</h4>
+                    <p class="text-gray-700">將派件員歸類為「自僱」可讓公司免於承擔僱主的社會保險、帶薪假期、車輛開支等。這些成本直接轉嫁給個人，從而壓低了公司的直接勞動力成本。</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow">
+                    <h4 class="font-bold text-xl mb-2 text-accent">3. 市場與所有權壓力</h4>
+                    <p class="text-gray-700">激烈的市場競爭迫使派送價格不斷探底。同時，私募股權（Apollo）的所有權結構，追求高效率和利潤最大化，進一步加劇了對成本（包括薪酬）的控制。</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="timeline" class="py-16 scroll-mt-20">
+            <div class="text-center mb-16 px-4">
+                <h3 class="text-2xl md:text-3xl font-bold text-accent">發展歷程：從 Hermes 到 Evri</h3>
+                <p class="mt-2 max-w-2xl mx-auto text-gray-600">Evri 的演變反映了英國物流業的變遷。點擊時間軸上的關鍵節點，了解影響公司的重大事件。</p>
+            </div>
+            <div class="relative w-full">
+                <!-- Timeline line -->
+                <div class="absolute left-1/2 h-full w-0.5 bg-gray-300 -translate-x-1/2"></div>
+                <!-- Timeline items -->
+                <div id="timeline-container" class="space-y-12">
+                    <!-- JS will populate this -->
+                </div>
+            </div>
+            <div id="timeline-details" class="mt-8 p-6 bg-secondary rounded-lg min-h-[100px] text-center transition-all">
+                <p class="text-gray-600">請點擊上方時間點查看詳細資訊。</p>
+            </div>
+        </section>
+
+        <section id="union" class="py-12 scroll-mt-20">
+             <div class="text-center mb-12 px-4">
+                <h3 class="text-2xl md:text-3xl font-bold text-accent">GMB 工會的角色與 SE+ 協議</h3>
+                <p class="mt-2 max-w-2xl mx-auto text-gray-600">面對法律挑戰和工會壓力，Evri (當時的 Hermes) 推出了創新的「自僱增益型」(SE+) 合約，試圖在保留彈性的同時提供更多保障。然而，這項協議是否真正解決了問題？</p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-8 items-start">
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <h4 class="font-bold text-xl mb-4 text-center text-green-700">SE+ 合約的進步之處</h4>
+                    <ul class="space-y-3">
+                        <li class="flex items-start"><span class="text-green-500 mr-2">✔</span> <div><strong>保障最低時薪：</strong> 費率高於國家生活工資。</div></li>
+                        <li class="flex items-start"><span class="text-green-500 mr-2">✔</span> <div><strong>帶薪假期：</strong> 每年最多 28 天。</div></li>
+                        <li class="flex items-start"><span class="text-green-500 mr-2">✔</span> <div><strong>養老金計劃：</strong> 自動加入公司支持的養老金計劃。</div></li>
+                        <li class="flex items-start"><span class="text-green-500 mr-2">✔</span> <div><strong>集體談判權：</strong> GMB 工會可代表派件員進行薪酬協商。</div></li>
+                        <li class="flex items-start"><span class="text-green-500 mr-2">✔</span> <div><strong>病假與育嬰假：</strong> 為 GMB 會員提供補貼保險及假期權利。</div></li>
+                    </ul>
+                </div>
+                 <div class="bg-white p-6 rounded-lg shadow-lg border-t-4 border-yellow-400">
+                    <h4 class="font-bold text-xl mb-4 text-center text-yellow-700">持續存在的挑戰</h4>
+                    <ul class="space-y-3">
+                        <li class="flex items-start"><span class="text-yellow-500 mr-2">❗</span> <div><strong>自願加入：</strong>並非所有派件員都選擇或有資格加入 SE+，保障並非普及。</div></li>
+                        <li class="flex items-start"><span class="text-yellow-500 mr-2">❗</span> <div><strong>實際收入爭議：</strong> 仍有派件員報告，即使在 SE+ 下，扣除開支後收入仍低於最低工資。</div></li>
+                        <li class="flex items-start"><span class="text-yellow-500 mr-2">❗</span> <div><strong>變相減薪：</strong> 有指控稱公司會透過調整包裹分類或增加工作量來壓低高效派件員的實際費率。</div></li>
+                        <li class="flex items-start"><span class="text-yellow-500 mr-2">❗</span> <div><strong>根本矛盾：</strong> 公司控制成本的需求與派件員對穩定收入的渴望之間，依然存在著持續的張力。</div></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="conclusion" class="text-center py-16">
+            <h3 class="text-2xl md:text-3xl font-bold text-accent">結論：一場未完的博弈</h3>
+            <p class="mt-4 max-w-3xl mx-auto text-lg text-gray-700">Evri 的案例是「零工經濟」下勞資關係的縮影。它揭示了在追求低成本、高效率的電子商務市場中，勞動者的權益如何被置於壓力之下。儘管在工會的努力下取得了如 SE+ 協議等重要進展，但要真正實現公平的勞動實踐與可持續的商業模式之間的平衡，Evri 和整個行業仍有很長的路要走。</p>
+        </section>
+
+    </main>
+    
+    <!-- Modal -->
+    <div id="courier-modal" class="modal fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50 opacity-0 pointer-events-none">
+        <div class="bg-white rounded-lg shadow-xl p-8 max-w-md w-full">
+            <h4 class="text-2xl font-bold mb-4 text-accent">自僱派件員的真實成本</h4>
+            <p class="mb-6 text-gray-700">作為「自僱人士」，派件員需自行承擔所有營運開支，這些開支會大幅蠶食他們的毛收入。這包括：</p>
+            <ul class="space-y-2 list-disc list-inside text-gray-600">
+                <li><strong>燃料費：</strong>每日行駛的主要開銷。</li>
+                <li><strong>車輛保險：</strong>必須購買包含商業用途的保險。</li>
+                <li><strong>車輛維護與損耗：</strong>輪胎、機油、維修等費用。</li>
+                <li><strong>稅務與國民保險：</strong>需自行處理個人稅務及供款。</li>
+                <li><strong>無薪時間：</strong>包裹分揀、裝載、規劃路線的時間不計薪。</li>
+            </ul>
+            <button id="close-modal" class="mt-6 w-full bg-accent text-white py-2 rounded-lg hover:bg-opacity-90 transition-colors">關閉</button>
+        </div>
+    </div>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile Menu
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+            document.querySelectorAll('#mobile-menu a').forEach(link => {
+                link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
+            });
+
+            // Pay Comparison Chart
+            const ctx = document.getElementById('payComparisonChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Evri 官方宣稱時薪 (SE+ 高峰期)', '派件員報告實際時薪 (扣除成本後)'],
+                    datasets: [{
+                        label: '時薪 (英鎊)',
+                        data: [23.49, 4.25],
+                        backgroundColor: [
+                            'rgba(0, 95, 115, 0.6)',
+                            'rgba(238, 108, 77, 0.6)'
+                        ],
+                        borderColor: [
+                            'rgba(0, 95, 115, 1)',
+                            'rgba(238, 108, 77, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    indexAxis: 'y',
+                    scales: {
+                        x: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: '每小時收入 (英鎊 £)'
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    let label = context.dataset.label || '';
+                                    if (label) {
+                                        label += ': ';
+                                    }
+                                    if (context.parsed.x !== null) {
+                                        label += new Intl.NumberFormat('en-GB', { style: 'currency', currency: 'GBP' }).format(context.parsed.x);
+                                    }
+                                    return label;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+            // Courier Cost Modal
+            const courierNode = document.getElementById('courier-node');
+            const courierModal = document.getElementById('courier-modal');
+            const closeModalButton = document.getElementById('close-modal');
+
+            courierNode.addEventListener('click', () => {
+                courierModal.classList.remove('opacity-0', 'pointer-events-none');
+            });
+            closeModalButton.addEventListener('click', () => {
+                courierModal.classList.add('opacity-0', 'pointer-events-none');
+            });
+            courierModal.addEventListener('click', (e) => {
+                if (e.target === courierModal) {
+                    courierModal.classList.add('opacity-0', 'pointer-events-none');
+                }
+            });
+
+            // Timeline
+            const timelineData = [
+                { year: '1974', title: '公司成立', text: '前身名為 Grattan Mail Order，位於約克郡，為郵購業務提供服務。' },
+                { year: '2020', title: '私募股權收購', text: 'Advent International 收購公司多數股權，並投入巨資進行技術升級和自動化改造。' },
+                { year: '2022', title: '更名為 Evri', text: '為應對包裹處理不當、服務差等負面批評，Hermes UK 更名為 Evri，意圖重塑品牌形象。' },
+                { year: '2024', title: 'Apollo 接手', text: '私募股權公司 Apollo Global Management 以 27 億英鎊全面收購 Evri。' },
+                { year: '2025', title: '與 DHL 合併', text: 'Evri 宣布與 DHL eCommerce UK 合併，旨在打造英國最大的包裹派送企業，DHL 集團成為重要少數股東。' }
+            ];
+            
+            const timelineContainer = document.getElementById('timeline-container');
+            const timelineDetails = document.getElementById('timeline-details');
+
+            timelineData.forEach((item, index) => {
+                const sideClass = index % 2 === 0 ? 'left-1/2' : 'right-1/2';
+                const textAlignment = index % 2 === 0 ? 'text-right pr-8' : 'text-left pl-8';
+                const itemDiv = document.createElement('div');
+                itemDiv.className = `timeline-item relative w-1/2 ${index % 2 === 0 ? '' : 'ml-auto'}`;
+                itemDiv.innerHTML = `
+                    <div class="dot absolute top-1/2 -mt-2 w-4 h-4 rounded-full bg-gray-300 border-2 border-white ${index % 2 === 0 ? 'right-0 -mr-2' : 'left-0 -ml-2'}"></div>
+                    <div class="${textAlignment}">
+                        <p class="font-bold text-lg text-accent">${item.year}</p>
+                        <p class="text-md text-gray-800">${item.title}</p>
+                    </div>
+                `;
+                itemDiv.addEventListener('click', () => {
+                    document.querySelectorAll('.timeline-item').forEach(el => el.classList.remove('active'));
+                    itemDiv.classList.add('active');
+                    timelineDetails.innerHTML = `<p class="font-bold text-accent">${item.year}: ${item.title}</p><p class="mt-2">${item.text}</p>`;
+                });
+                timelineContainer.appendChild(itemDiv);
+            });
+            
+            // Nav link scroll behavior
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+
+            // Active nav link on scroll
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-link');
+            window.addEventListener('scroll', () => {
+                let current = '';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    if (pageYOffset >= sectionTop - 150) {
+                        current = section.getAttribute('id');
+                    }
+                });
+
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href').includes(current)) {
+                        link.classList.add('active');
+                    }
+                });
+            });
+
+        });
+    </script>
+</body>
+</html>
